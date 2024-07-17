@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <title>Planta AR</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+    model-viewer {
+      width: 100vw;
+      height: 80vh;
+    }
+    .info-panel {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 500px;
+    }
+    .info-panel h2 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #333;
+    }
+    .info-panel p {
+      margin: 5px 0;
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <model-viewer
+    id="plantViewer"
+    src="./src/Plant Model/plant.glb"
+    alt="A 3D model of a plant"
+    auto-rotate
+    camera-controls
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    exposure="0.3"
+    shadow-intensity="1"
+    shadow-softness="1">
+  </model-viewer>
+
+  <div class="info-panel">
+    <h2>Información de la Planta</h2>
+    <p>Humedad: <span id="humidity">-</span>%</p>
+    <p>Probabilidad de Vivir: <span id="probability">-</span>%</p>
+    <p>Otros factores: <span id="factors">-</span></p>
+  </div>
+
+  <script>
+    // Simula la actualización de los datos de la planta
+    function updatePlantInfo() {
+      document.getElementById('humidity').textContent = Math.floor(Math.random() * 100);
+      document.getElementById('probability').textContent = Math.floor(Math.random() * 100);
+      document.getElementById('factors').textContent = 'Fertilización adecuada, Luz solar moderada';
+    }
+
+    // Actualiza la información de la planta cada 5 segundos
+    setInterval(updatePlantInfo, 5000);
+
+    // Actualiza la información de la planta al cargar la página
+    updatePlantInfo();
+  </script>
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <title>Planta AR</title>
+  <title>Puntos de Interés en Modelo 3D</title>
   <style>
     body {
       margin: 0;
@@ -18,7 +18,17 @@
     }
     model-viewer {
       width: 100vw;
-      height: 80vh;
+      height: 60vh;
+      --poster-color: transparent;
+    }
+    .annotation {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      padding: 5px 10px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
     }
     .info-panel {
       position: absolute;
@@ -31,6 +41,7 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       width: 80%;
       max-width: 500px;
+      display: none;
     }
     .info-panel h2 {
       margin-top: 0;
@@ -41,6 +52,43 @@
       margin: 5px 0;
       font-size: 18px;
       color: #555;
+    }
+    .info-panel button {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -56,28 +104,70 @@
     exposure="0.3"
     shadow-intensity="1"
     shadow-softness="1">
+    <!-- Annotations -->
+    <button class="annotation" slot="hotspot-1" data-position="0.2m 0.5m 0" data-normal="0 1 0">1</button>
+    <button class="annotation" slot="hotspot-2" data-position="-0.3m 0.4m 0.2m" data-normal="0 1 0">2</button>
+    <button class="annotation" slot="hotspot-3" data-position="0.1m 0.3m -0.2m" data-normal="0 1 0">3</button>
   </model-viewer>
 
-  <div class="info-panel">
+  <div class="info-panel" id="infoPanel">
     <h2>Información de la Planta</h2>
-    <p>Humedad: <span id="humidity">-</span>%</p>
-    <p>Probabilidad de Vivir: <span id="probability">-</span>%</p>
-    <p>Otros factores: <span id="factors">-</span></p>
+    <p id="infoContent">Selecciona un punto de interés para más detalles.</p>
+    <button id="videoButton">Ver Video</button>
+  </div>
+
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <iframe id="youtubeVideo" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
   </div>
 
   <script>
-    // Simula la actualización de los datos de la planta
-    function updatePlantInfo() {
-      document.getElementById('humidity').textContent = Math.floor(Math.random() * 100);
-      document.getElementById('probability').textContent = Math.floor(Math.random() * 100);
-      document.getElementById('factors').textContent = 'Fertilización adecuada, Luz solar moderada';
+    const infoPanel = document.getElementById('infoPanel');
+    const infoContent = document.getElementById('infoContent');
+    const videoButton = document.getElementById('videoButton');
+    const videoModal = document.getElementById('videoModal');
+    const closeModal = document.getElementById('closeModal');
+    const youtubeVideo = document.getElementById('youtubeVideo');
+
+    document.querySelectorAll('.annotation').forEach((annotation) => {
+      annotation.addEventListener('click', () => {
+        const content = getInfoContent(annotation.textContent);
+        infoContent.textContent = content;
+        infoPanel.style.display = 'block';
+      });
+    });
+
+    videoButton.addEventListener('click', () => {
+      youtubeVideo.src = "https://www.youtube.com/embed/vyeiYBfm_kg?si=v8JB5f4HzLZdhR5N"; // Reemplaza "your-video-id" con el ID de tu video de YouTube
+      videoModal.style.display = "block";
+    });
+
+    closeModal.addEventListener('click', () => {
+      videoModal.style.display = "none";
+      youtubeVideo.src = ""; // Detener el video al cerrar el modal
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === videoModal) {
+        videoModal.style.display = "none";
+        youtubeVideo.src = ""; // Detener el video al hacer clic fuera del modal
+      }
+    });
+
+    function getInfoContent(annotationId) {
+      switch (annotationId) {
+        case '1':
+          return 'Humedad: 65%, Probabilidad de vivir: 80%, Factores: Luz solar moderada.';
+        case '2':
+          return 'Humedad: 70%, Probabilidad de vivir: 85%, Factores: Riego adecuado.';
+        case '3':
+          return 'Humedad: 60%, Probabilidad de vivir: 75%, Factores: Fertilización adecuada.';
+        default:
+          return 'Selecciona un punto de interés para más detalles.';
+      }
     }
-
-    // Actualiza la información de la planta cada 5 segundos
-    setInterval(updatePlantInfo, 5000);
-
-    // Actualiza la información de la planta al cargar la página
-    updatePlantInfo();
   </script>
 </body>
 </html>
