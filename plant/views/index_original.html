@@ -42,7 +42,7 @@
 <body class="bg-white">
 
     <model-viewer id="plantViewer" 
-                  src="../src/invernadero/invernadero.glb" 
+                  src="../src/bean/Frijol_0.glb" 
                   alt="A 3D model of a plant" 
                   auto-rotate
                   camera-controls 
@@ -59,23 +59,23 @@
     <!-- STEPS -->
     <div class="container slider d-flex" style="position: absolute; width: 50%; align-items: center; margin-left: 3%;">
         <div id="menuEtapas" class="slides flex-row">
-            <button class="slide selected" onclick="switchSrc(this, 'Frijol_0')"
+            <button class="slide selected" onclick="switchSrc(this, 'bean/Frijol_0')"
                 style="background-image: url('../src/img/steps/1.png');">
             </button>
 
-            <button class="slide" onclick="switchSrc(this, 'Frijol_1')"
+            <button class="slide" onclick="switchSrc(this, 'bean/Frijol_1')"
                 style="background-image: url('../src/img/steps/3.png');">
             </button>
             
-            <button class="slide" onclick="switchSrc(this, 'Frijol_2')"
+            <button class="slide" onclick="switchSrc(this, 'bean/Frijol_2')"
                 style="background-image: url('../src/img/steps/4.png');">
             </button>
             
-            <button class="slide" onclick="switchSrc(this, 'Frijol_3')"
+            <button class="slide" onclick="switchSrc(this, 'bean/Frijol_3')"
                 style="background-image: url('../src/img/steps/5.png');">
             </button>
             
-            <button class="slide" onclick="switchSrc(this, 'Frijol_4')"
+            <button class="slide" onclick="switchSrc(this, 'bean/Frijol_4')"
                 style="background-image: url('../src/img/steps/6.png');">
             </button>
         </div>
@@ -85,7 +85,7 @@
         const modelViewer = document.querySelector("model-viewer");
 
         window.switchSrc = (element, name) => {
-            const base = "../src/bean/" + name;
+            const base = "../src/" + name;
             modelViewer.src = base + '.glb';
             const slides = document.querySelectorAll(".slide");
             slides.forEach((element) => { element.classList.remove("selected"); });
@@ -352,7 +352,7 @@
             <button type="button" class="btn btn-round2" style="background-image: url('http://127.0.0.1:5500/plant/src/img/icons/temperatura.png');"> </button>
         </div>
           <div class="col-sm">
-            <button type="button" class="btn btn-round2" style="background-image: url('http://127.0.0.1:5500/plant/src/img/icons/invernadero.png');"> </button>
+            <button type="button" onclick="switchSrc(this, 'invernadero/invernadero')" class="btn btn-round2" style="background-image: url('http://127.0.0.1:5500/plant/src/img/icons/invernadero.png');"> </button>
         </div>
         </div>
     </div>
