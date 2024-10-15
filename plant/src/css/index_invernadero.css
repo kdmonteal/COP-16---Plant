@@ -13,7 +13,7 @@ model-viewer {
     width: 100vw;
     height: 100vh;
     --poster-color: transparent;
-    background-color: #f7801d;
+    background-color: #177cff;/*#f7801d;*/
     transition: background-color 0.5s;
     /* Color cielo */
 }

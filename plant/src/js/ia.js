@@ -28,8 +28,11 @@ async function predict() {
 
     try {
         const response = await fetch('http://93.127.213.95:5003/predict', {
-            method: 'POST',
+            method: "POST",
+            mode: "cors",
             headers: {
+                "Content-Type": "text/xml",
+                "X-PINGOTHER": "pingpong",
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
@@ -104,3 +107,5 @@ function detenerTexto() {
 }
 
 detenerTexto();
+
+document.getElementById("modalEstandar").click();
