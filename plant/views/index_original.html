@@ -33,10 +33,25 @@
                   shadow-intensity="1"
                   shadow-softness="1">
     </model-viewer>
+
+    <model-viewer style="background-color: white; position: absolute; z-index: -1; height: 70%; margin-top: 15%; display: none;"
+                  id="plantViewer2" 
+                  src="../src/bean/planta_final_MUERE.glb" 
+                  alt="A 3D model of a plant" 
+                  auto-rotate
+                  camera-controls 
+                  camera-orbit="45deg 55deg 4m"
+                  ar  
+                  scale="0.2 0.2 0.2"
+                  ar-modes="webxr scene-viewer quick-look" 
+                  exposure="0.7" 
+                  shadow-intensity="1"
+                  shadow-softness="1">
+    </model-viewer>
     <!--skybox-image="../src/img/hdr/night.jpg"-->
 
     <!-- STEPS -->
-    <div class="container slider d-flex" style="position: absolute; width: 50%; align-items: center; margin-left: 3%;">
+    <div class="container slider d-flex" style="position: absolute; width: 50%; align-items: center; margin-left: 2%;">
         <div id="menuEtapas" class="slides flex-row">
             <button class="slide selected" onclick="switchSrc(this, 'bean/Frijol_0')"
                 style="background-image: url('../src/img/steps/1.png');">
@@ -59,7 +74,11 @@
             </button>
 
             <button class="slide" onclick="switchSrc(this, 'bean/Frijol_5')"
-                style="background-image: url('../src/img/steps/6.png');">
+                style="background-image: url('../src/img/steps/7.png');">
+            </button>
+
+            <button class="slide" onclick="switchSrc(this, 'bean/Frijol_6')"
+                style="background-image: url('../src/img/steps/8.png');">
             </button>
         </div>
     </div>

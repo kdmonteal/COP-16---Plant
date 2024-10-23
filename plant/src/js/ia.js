@@ -5,9 +5,9 @@
 
 async function predict() {
     document.getElementById('loading').style.display = 'block';
+
     document.getElementById('result').innerHTML = '';
     document.getElementById('error').innerHTML = '';
-
 
     document.getElementById("plantViewer").style.display="none";
     document.getElementById("factores").style.display="none";
@@ -74,6 +74,26 @@ async function predict() {
                 </tbody>
             </table>
         `;
+        document.getElementById('plantViewer2').style.display = 'block';
+
+        const modelViewer2 = document.getElementById('plantViewer2');
+        const statusPlant = `${result.prediction_result['Estado de Vida Predicho']}`;
+        let base = null;
+
+        switch(statusPlant) {
+            case "Óptimo":
+                base = "../src/" + "bean/Frijol_6";
+              break;
+            case "Estable":
+                base = "../src/" + "bean/Frijol_5";
+              break;
+            default:
+            case "Malo":
+                base = "../src/" + "bean/planta_final_MUERE";
+              break;
+          }
+
+        modelViewer2.src = base + '.glb';
 
         leerTexto();
 
