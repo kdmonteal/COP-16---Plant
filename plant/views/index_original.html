@@ -353,8 +353,11 @@
           <div class="col-sm">
             <button type="button" class="btn btn-round2" style="background-image: url('../src/img/icons/temperatura.png');"> </button>
         </div>-->
-          <div class="col-sm">
+        <div class="col-sm">
             <button type="button" onclick="switchSrc(this, 'invernadero/invernadero')" class="btn btn-round2" style="background-image: url('../src/img/icons/invernadero.png');"> </button>
+        </div>
+        <div class="col-sm">
+            <button type="button" onclick="redirectToPage()" class="btn btn-round2" style="background-image: url('../src/img/icons/ar.png');"> </button>
         </div>
         </div>
     </div>
@@ -369,6 +372,12 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
 
+        <script>
+            function redirectToPage() {
+              // Redirigir a una URL específica
+              window.location.href = "./plant_detail.html";
+            }
+          </script>
 
     <script src="../src/js/codeBackground.js"></script>
     <script src="../src/js/ia.js"></script>

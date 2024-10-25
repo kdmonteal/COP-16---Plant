@@ -47,16 +47,45 @@
 <body>
   <model-viewer
     id="plantViewer"
-    src="./src/Plant Model/plant.glb"
+    src="../src/bean/Frijol_0.glb"
     alt="A 3D model of a plant"
     auto-rotate
     camera-controls
     ar
     ar-modes="webxr scene-viewer quick-look"
-    exposure="0.3"
+    exposure="0.7" 
     shadow-intensity="1"
     shadow-softness="1">
   </model-viewer>
+
+  <script>
+
+    // Lista de URLs de los modelos GLB
+    const models = [
+        "Frijol_0.glb",
+        "Frijol_1.glb",
+        "Frijol_2.glb",
+        "Frijol_3.glb",
+        "Frijol_4.glb",
+        "Frijol_5.glb",
+        "Frijol_6.glb",
+        "planta_final_MUERE.glb"
+    ];
+
+    let currentModelIndex = 0;
+
+    // Función para cambiar el modelo cada 3 segundos
+    setInterval(() => {
+        // Cambia al siguiente modelo
+        currentModelIndex = (currentModelIndex + 1) % models.length;
+        let modelValue = models[currentModelIndex];
+        let myPath = "../src/bean/" + modelValue;
+        let modelViewer = document.getElementById("plantViewer");
+        modelViewer.src = myPath;
+
+        console.log(myPath);
+    }, 6000); // Cada 3 segundos
+</script>
 
   <div class="info-panel">
     <h2>Información de la Planta</h2>
