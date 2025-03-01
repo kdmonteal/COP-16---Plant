@@ -25,7 +25,7 @@ async function predict() {
         fosforo: parseFloat(document.getElementById('fosforo').value),
         potasio: parseFloat(document.getElementById('potasio').value)
     };
-
+    console.log("Datos enviados:", JSON.stringify(data, null, 2));
     try {
         const response = await fetch('http://93.127.213.95:5003/predict', {
             method: "POST",
