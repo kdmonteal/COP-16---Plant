@@ -1,289 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Bootstrap core CSS -->
-    <link href="../src/slidebar/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="../src/slidebar/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
     <link rel="stylesheet" href="../src/css/index_invernadero.css">
     <link rel="stylesheet" href="../src/css/model_viewer_style.css">
+
     <title>Puntos de Interés en Modelo 3D Usb</title>
-  </head>
-  <body class="bg-white">
-    <model-viewer id="plantViewer" src="../src/bean/Frijol_0.glb" alt="A 3D model of a plant" auto-rotate camera-controls camera-orbit="45deg 55deg 4m" ar scale="0.2 0.2 0.2" ar-modes="webxr scene-viewer quick-look" exposure="0.7" shadow-intensity="1" shadow-softness="1"></model-viewer>
-    <model-viewer style="background-color: white; position: absolute; z-index: -1; height: 70%; margin-top: 15%; display: none;" id="plantViewer2" src="../src/bean/planta_final_MUERE.glb" alt="A 3D model of a plant" auto-rotate camera-controls camera-orbit="45deg 55deg 4m" ar scale="0.2 0.2 0.2" ar-modes="webxr scene-viewer quick-look" exposure="0.7" shadow-intensity="1" shadow-softness="1"></model-viewer>
+</head>
+<body class="bg-white">
+
+    <model-viewer id="plantViewer" 
+                  src="../src/bean/Frijol_0.glb" 
+                  alt="A 3D model of a plant" 
+                  auto-rotate
+                  camera-controls 
+                  camera-orbit="45deg 55deg 4m"
+                  ar  
+                  scale="0.2 0.2 0.2"
+                  ar-modes="webxr scene-viewer quick-look" 
+                  exposure="0.7" 
+                  shadow-intensity="1"
+                  shadow-softness="1">
+    </model-viewer>
+
+    <model-viewer style="background-color: white; position: absolute; z-index: -1; height: 70%; margin-top: 15%; display: none;"
+                  id="plantViewer2" 
+                  src="../src/bean/planta_final_MUERE.glb" 
+                  alt="A 3D model of a plant" 
+                  auto-rotate
+                  camera-controls 
+                  camera-orbit="45deg 55deg 4m"
+                  ar  
+                  scale="0.2 0.2 0.2"
+                  ar-modes="webxr scene-viewer quick-look" 
+                  exposure="0.7" 
+                  shadow-intensity="1"
+                  shadow-softness="1">
+    </model-viewer>
     <!--skybox-image="../src/img/hdr/night.jpg"-->
+
     <!-- STEPS -->
     <div class="container slider d-flex" style="position: absolute; width: 50%; align-items: center; margin-left: 2%;">
-      <div id="menuEtapas" class="slides flex-row">
-        <button class="slide selected" onclick="switchSrc(this, 'bean/Frijol_0')" style="background-image: url('../src/img/steps/1.png');"></button>
-        <button class="slide" onclick="switchSrc(this, 'bean/Frijol_1')" style="background-image: url('../src/img/steps/3.png');"></button>
-        <button class="slide" onclick="switchSrc(this, 'bean/Frijol_2')" style="background-image: url('../src/img/steps/4.png');"></button>
-        <button class="slide" onclick="switchSrc(this, 'bean/Frijol_3')" style="background-image: url('../src/img/steps/5.png');"></button>
-        <button class="slide" onclick="switchSrc(this, 'bean/Frijol_4')" style="background-image: url('../src/img/steps/6.png');"></button>
-        <button class="slide" onclick="switchSrc(this, 'bean/Frijol_5')" style="background-image: url('../src/img/steps/7.png');"></button>
-        <button class="slide" onclick="switchSrc(this, 'bean/Frijol_6')" style="background-image: url('../src/img/steps/8.png');"></button>
-      </div>
+        <div id="menuEtapas" class="slides flex-row">
+            <button class="slide selected" onclick="switchSrc(this, 'bean/Frijol_0')"
+                style="background-image: url('../src/img/steps/1.png');">
+            </button>
+
+            <button class="slide" onclick="switchSrc(this, 'bean/Frijol_1')"
+                style="background-image: url('../src/img/steps/3.png');">
+            </button>
+            
+            <button class="slide" onclick="switchSrc(this, 'bean/Frijol_2')"
+                style="background-image: url('../src/img/steps/4.png');">
+            </button>
+            
+            <button class="slide" onclick="switchSrc(this, 'bean/Frijol_3')"
+                style="background-image: url('../src/img/steps/5.png');">
+            </button>
+            
+            <button class="slide" onclick="switchSrc(this, 'bean/Frijol_4')"
+                style="background-image: url('../src/img/steps/6.png');">
+            </button>
+
+            <button class="slide" onclick="switchSrc(this, 'bean/Frijol_5')"
+                style="background-image: url('../src/img/steps/7.png');">
+            </button>
+
+            <button class="slide" onclick="switchSrc(this, 'bean/Frijol_6')"
+                style="background-image: url('../src/img/steps/8.png');">
+            </button>
+        </div>
     </div>
+
     <script type="module">
-      const modelViewer = document.querySelector("model-viewer");
-      window.switchSrc = (element, name) => {
-        const base = "../src/" + name;
-        modelViewer.src = base + '.glb';
-        const slides = document.querySelectorAll(".slide");
-        slides.forEach((element) => {
-          element.classList.remove("selected");
+        const modelViewer = document.querySelector("model-viewer");
+
+        window.switchSrc = (element, name) => {
+            const base = "../src/" + name;
+            modelViewer.src = base + '.glb';
+            const slides = document.querySelectorAll(".slide");
+            slides.forEach((element) => { element.classList.remove("selected"); });
+            element.classList.add("selected");
+        };
+
+        document.querySelector(".slider").addEventListener('beforexrselect', (ev) => {
+            // Keep slider interactions from affecting the XR scene.
+            ev.preventDefault();
         });
-        element.classList.add("selected");
-      };
-      document.querySelector(".slider").addEventListener('beforexrselect', (ev) => { // Keep slider interactions from affecting the XR scene. ev.preventDefault(); }); 
     </script>
     <!-- ***** -->
     <div class="container text-center">
-      <div class="row p-3">
-        <div class="col-12">
-          <a href="../index.html" class="align-items-center border-bottom">
-            <div style="justify-content: top !important;">
-              <img id="logoUsb" style="width: 30%;" src="../src/img/logo_cop_usb.png" alt="Imagen de Encabezado">
+        <div class="row p-3">
+            <div class="col-12">
+                <a href="../index.html" class="align-items-center border-bottom">
+                    <div style="justify-content: top !important;">
+                        <img id="logoUsb" style="width: 30%;" src="../src/img/logo_cop_usb.png" alt="Imagen de Encabezado">
+                    </div>
+                </a>
             </div>
-          </a>
         </div>
-      </div>
-      <hr>
-      <div class="d-flex flex-row" style="margin-top: 2%;">
-        <div class="col">
-          <h4>Predicción de Supervivencia</h4>
-          <button id="modalEstandar" type="button" class="btn btn-primary btn-round" data-bs-toggle="modal" data-bs-target="#modalTab">
-            <i class="bi bi-info-circle" style="font-size: 20px;"></i>
-          </button>
-          <br>
-          <br>
-          <div class="container">
-            <form id="plant-form">
-              <div class="row">
-                <div class="col-sm d-flex justify-content-end">
-                  <label for="temperatura">Temperatura (°C):</label>
+        <hr>
+        <div class="d-flex flex-row" style="margin-top: 2%;">
+            <div class="col">
+                <h4>Predicción de Supervivencia</h4>
+
+                <button id="modalEstandar" type="button" class="btn btn-primary btn-round" data-bs-toggle="modal"
+                    data-bs-target="#modalTab">
+                    <i class="bi bi-info-circle" style="font-size: 20px;"></i>
+                </button>
+
+                <br><br>
+
+                <div class="container">
+                    <form id="plant-form">
+
+                        <div class="row">
+                            <div class="col-sm d-flex justify-content-end">
+                                <label for="temperatura">Temperatura (°C):</label>
+                            </div>
+                            <div class="col-sm d-flex justify-content-start">
+                                <input type="number" id="temperatura" step="any" value="20" required><br>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm d-flex justify-content-end">
+                                <label for="humedad_suelo">Humedad del Suelo (%):</label>
+                            </div>
+                            <div class="col-sm d-flex justify-content-start">
+                                <input type="number" id="humedad_suelo" step="any" value="60" required><br>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm d-flex justify-content-end">
+                                <label for="humedad_ambiente">Humedad Ambiente (%):</label>
+                            </div>
+                            <div class="col-sm d-flex justify-content-start">
+                                <input type="number" id="humedad_ambiente" step="any" value="60" required><br>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm d-flex justify-content-end">
+                                <label for="luz">Luz (Lux):</label>
+                            </div>
+                            <div class="col-sm d-flex justify-content-start">
+                                <input type="number" id="luz" step="any" value="4000" required><br>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm d-flex justify-content-end">
+                                <label for="ph_suelo">pH del Suelo:</label>
+                            </div>
+                            <div class="col-sm d-flex justify-content-start">
+                                <input type="number" id="ph_suelo" step="any" value="6" required><br>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm d-flex justify-content-end">
+                                <label for="co2">CO₂ (ppm):</label>
+                            </div>
+                            <div class="col-sm d-flex justify-content-start">
+                                <input type="number" id="co2" step="any" value="400" required><br>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm d-flex justify-content-end">
+                                <label for="nitrogeno">Nitrógeno (ppm):</label>
+                            </div>
+                            <div class="col-sm d-flex justify-content-start">
+                                <input type="number" id="nitrogeno" step="any" value="20" required><br>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm d-flex justify-content-end">
+                                <label for="fosforo">Fósforo (ppm):</label>
+                            </div>
+                            <div class="col-sm d-flex justify-content-start">
+                                <input type="number" id="fosforo" step="any" value="20" required><br>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm d-flex justify-content-end">
+                                <label for="potasio">Potasio (ppm):</label>
+                            </div>
+                            <div class="col-sm d-flex justify-content-start">
+                                <input type="number" id="potasio" step="any" value="200" required><br>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="col-sm d-flex justify-content-start">
-                  <input type="number" id="temperatura" step="any" value="20" required>
-                  <br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm d-flex justify-content-end">
-                  <label for="humedad_suelo">Humedad del Suelo (%):</label>
-                </div>
-                <div class="col-sm d-flex justify-content-start">
-                  <input type="number" id="humedad_suelo" step="any" value="60" required>
-                  <br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm d-flex justify-content-end">
-                  <label for="humedad_ambiente">Humedad Ambiente (%):</label>
-                </div>
-                <div class="col-sm d-flex justify-content-start">
-                  <input type="number" id="humedad_ambiente" step="any" value="60" required>
-                  <br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm d-flex justify-content-end">
-                  <label for="luz">Luz (Lux):</label>
-                </div>
-                <div class="col-sm d-flex justify-content-start">
-                  <input type="number" id="luz" step="any" value="4000" required>
-                  <br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm d-flex justify-content-end">
-                  <label for="ph_suelo">pH del Suelo:</label>
-                </div>
-                <div class="col-sm d-flex justify-content-start">
-                  <input type="number" id="ph_suelo" step="any" value="6" required>
-                  <br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm d-flex justify-content-end">
-                  <label for="co2">CO₂ (ppm):</label>
-                </div>
-                <div class="col-sm d-flex justify-content-start">
-                  <input type="number" id="co2" step="any" value="400" required>
-                  <br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm d-flex justify-content-end">
-                  <label for="nitrogeno">Nitrógeno (ppm):</label>
-                </div>
-                <div class="col-sm d-flex justify-content-start">
-                  <input type="number" id="nitrogeno" step="any" value="20" required>
-                  <br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm d-flex justify-content-end">
-                  <label for="fosforo">Fósforo (ppm):</label>
-                </div>
-                <div class="col-sm d-flex justify-content-start">
-                  <input type="number" id="fosforo" step="any" value="20" required>
-                  <br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm d-flex justify-content-end">
-                  <label for="potasio">Potasio (ppm):</label>
-                </div>
-                <div class="col-sm d-flex justify-content-start">
-                  <input type="number" id="potasio" step="any" value="200" required>
-                  <br>
-                </div>
-              </div>
-            </form>
-          </div>
-          <hr>
-          <button id="predecirBtn" onclick="predict()" type="button" class="btn btn-outline-primary">Predecir</button>
-          <div id="loading">Cargando...</div>
-          <div id="result" class="result"></div>
-          <div id="error" class="error"></div>
+                <hr>
+                <button id="predecirBtn" onclick="predict()" type="button"
+                    class="btn btn-outline-primary">Predecir</button>
+                <div id="loading">Cargando...</div>
+                <div id="result" class="result"></div>
+                <div id="error" class="error"></div>
+            </div>
+            <div id="content3D" class="col" style="display: none;">
+            </div>
+            <div id="contentText" class="col" style="display: none;">
+                <div id="resultVariables" class="result"></div>
+                <hr>
+                <h4>Recomendación</h4>
+                <button name="voicePlay" type="button" onclick="leerTexto()" class="btn btn-primary btn-round">
+                    <i class="bi bi-volume-up" style="font-size: 20px;"></i>
+                </button>
+                <button name="voiceStop" type="button" onclick="detenerTexto()" class="btn btn-secondary btn-round"
+                    style="display: none;">
+                    <i class="bi bi-volume-mute" style="font-size: 20px;"></i>
+                </button>
+
+                <button type="button" onclick="" class="btn btn-primary btn-round" data-bs-toggle="modal"
+                    data-bs-target="#modalResult">
+                    <i class="bi bi-eye" style="font-size: 20px;"></i>
+                </button>
+            </div>
         </div>
-        <div id="content3D" class="col" style="display: none;"></div>
-        <div id="contentText" class="col" style="display: none;">
-          <div id="resultVariables" class="result"></div>
-          <hr>
-          <h4>Recomendación</h4>
-          <button name="voicePlay" type="button" onclick="leerTexto()" class="btn btn-primary btn-round">
-            <i class="bi bi-volume-up" style="font-size: 20px;"></i>
-          </button>
-          <button name="voiceStop" type="button" onclick="detenerTexto()" class="btn btn-secondary btn-round" style="display: none;">
-            <i class="bi bi-volume-mute" style="font-size: 20px;"></i>
-          </button>
-          <button type="button" onclick="" class="btn btn-primary btn-round" data-bs-toggle="modal" data-bs-target="#modalResult">
-            <i class="bi bi-eye" style="font-size: 20px;"></i>
-          </button>
-        </div>
-      </div>
     </div>
+
+
     <!-- Modal 1 -->
-    <div class="modal fade bd-example-modal-lg" id="modalTab" tabindex="-1" aria-labelledby="modalTabLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="modalTabLabel">Tabla de Rangos de Variables</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Característica</th>
-                  <th scope="col">Unidad</th>
-                  <th scope="col">Malos</th>
-                  <th scope="col">Estables</th>
-                  <th scope="col">Óptimos</th>
-                  <th scope="col">Nota Adicional</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Temperatura</td>
-                  <td>°C</td>
-                  <td>10°C a 35°C</td>
-                  <td>15°C a 20°C</td>
-                  <td>20°C a 30°C</td>
-                  <td>Temperaturas extremas pueden afectar el crecimiento y la salud.</td>
-                </tr>
-                <tr>
-                  <td>Humedad (Suelo)</td>
-                  <td>%</td>
-                  <td>0% a 50%</td>
-                  <td>50% a 70%</td>
-                  <td>60% a 70%</td>
-                  <td>Humedad baja puede causar estrés hídrico; alta puede promover enfermedades.</td>
-                </tr>
-                <tr>
-                  <td>Humedad (Ambiente)</td>
-                  <td>%</td>
-                  <td>0% a 50%</td>
-                  <td>50% a 70%</td>
-                  <td>50% a 70%</td>
-                  <td>Controlar para evitar enfermedades fúngicas y estrés por sequía.</td>
-                </tr>
-                <tr>
-                  <td>Luz (Intensidad)</td>
-                  <td>Lux</td>
-                  <td>0 a 2000 lux</td>
-                  <td>2000 a 4000 lux</td>
-                  <td>4000 a 8000 lux</td>
-                  <td>Intensidad insuficiente puede limitar la fotosíntesis; excesiva puede causar daño. </td>
-                </tr>
-                <tr>
-                  <td>pH del Suelo</td>
-                  <td>-</td>
-                  <td>4.0 a 5.5</td>
-                  <td>5.5 a 6.0</td>
-                  <td>6.0 a 7.0</td>
-                  <td>pH fuera del rango óptimo puede afectar la disponibilidad de nutrientes.</td>
-                </tr>
-                <tr>
-                  <td>Contenido de Nutrientes</td>
-                  <td>ppm (mg/kg)</td>
-                  <td>N: 0 a 5, P: 0 a 10, K: 0 a 50</td>
-                  <td>N: 10 a 20, P: 30 a 60, K: 150 a 250</td>
-                  <td>N: 20 a 30, P: 40 a 70, K: 200 a 300</td>
-                  <td>Deficiencias o excesos de nutrientes pueden afectar el crecimiento y desarrollo. </td>
-                </tr>
-                <tr>
-                  <td>CO₂ (Aire)</td>
-                  <td>ppm</td>
-                  <td>0 a 300 ppm</td>
-                  <td>300 a 600 ppm</td>
-                  <td>800 a 1000 ppm</td>
-                  <td>CO₂ >1000 ppm puede causar estrés y reducir el rendimiento. Asegurar ventilación adecuada.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!--<div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button><button type="button" class="btn btn-primary">Save changes</button></div>-->
+    <div class="modal fade bd-example-modal-lg" id="modalTab" tabindex="-1" aria-labelledby="modalTabLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalTabLabel">Tabla de Rangos de Variables</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Característica</th>
+                                <th scope="col">Unidad</th>
+                                <th scope="col">Malos</th>
+                                <th scope="col">Estables</th>
+                                <th scope="col">Óptimos</th>
+                                <th scope="col">Nota Adicional</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Temperatura</td>
+                                <td>°C</td>
+                                <td>10°C a 35°C</td>
+                                <td>15°C a 20°C</td>
+                                <td>20°C a 30°C</td>
+                                <td>Temperaturas extremas pueden afectar el crecimiento y la salud.</td>
+                            </tr>
+                            <tr>
+                                <td>Humedad (Suelo)</td>
+                                <td>%</td>
+                                <td>0% a 50%</td>
+                                <td>50% a 70%</td>
+                                <td>60% a 70%</td>
+                                <td>Humedad baja puede causar estrés hídrico; alta puede promover enfermedades.</td>
+                            </tr>
+                            <tr>
+                                <td>Humedad (Ambiente)</td>
+                                <td>%</td>
+                                <td>0% a 50%</td>
+                                <td>50% a 70%</td>
+                                <td>50% a 70%</td>
+                                <td>Controlar para evitar enfermedades fúngicas y estrés por sequía.</td>
+                            </tr>
+                            <tr>
+                                <td>Luz (Intensidad)</td>
+                                <td>Lux</td>
+                                <td>0 a 2000 lux</td>
+                                <td>2000 a 4000 lux</td>
+                                <td>4000 a 8000 lux</td>
+                                <td>Intensidad insuficiente puede limitar la fotosíntesis; excesiva puede causar daño.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>pH del Suelo</td>
+                                <td>-</td>
+                                <td>4.0 a 5.5</td>
+                                <td>5.5 a 6.0</td>
+                                <td>6.0 a 7.0</td>
+                                <td>pH fuera del rango óptimo puede afectar la disponibilidad de nutrientes.</td>
+                            </tr>
+                            <tr>
+                                <td>Contenido de Nutrientes</td>
+                                <td>ppm (mg/kg)</td>
+                                <td>N: 0 a 5, P: 0 a 10, K: 0 a 50</td>
+                                <td>N: 10 a 20, P: 30 a 60, K: 150 a 250</td>
+                                <td>N: 20 a 30, P: 40 a 70, K: 200 a 300</td>
+                                <td>Deficiencias o excesos de nutrientes pueden afectar el crecimiento y desarrollo.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>CO₂ (Aire)</td>
+                                <td>ppm</td>
+                                <td>0 a 300 ppm</td>
+                                <td>300 a 600 ppm</td>
+                                <td>800 a 1000 ppm</td>
+                                <td>CO₂ >1000 ppm puede causar estrés y reducir el rendimiento. Asegurar ventilación
+                                    adecuada.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>-->
+            </div>
         </div>
-      </div>
     </div>
+
     <!-- Modal 2-->
-    <div class="modal fade bd-example-modal-lg" id="modalResult" tabindex="-1" aria-labelledby="modalResultLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="modalResultLabel">Recomendación</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div id="resultGPT" class="result"></div>
-          </div>
+    <div class="modal fade bd-example-modal-lg" id="modalResult" tabindex="-1" aria-labelledby="modalResultLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalResultLabel">Recomendación</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="resultGPT" class="result"></div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
+
     <div id="factores" class="container" style="position: absolute; width: 50%; align-items: center; margin-left: 0%;">
-      <!--<div class="row"><div class="col-sm"><button type="button" onclick="animateExposure()" class="btn btn-round2" style="background-image: url('../src/img/icons/day-night.png');"></button></div><div class="col-sm"><button type="button" class="btn btn-round2" style="background-image: url('../src/img/icons/temperatura.png');"></button></div>-->
-      <div class="col-sm">
-        <button type="button" onclick="switchSrc(this, 'invernadero/invernadero')" class="btn btn-round2" style="background-image: url('../src/img/icons/invernadero.png');"></button>
-      </div>
-      <div class="col-sm">
-        <button type="button" onclick="redirectToPage()" class="btn btn-round2" style="background-image: url('../src/img/icons/ar.png');"></button>
-      </div>
+        <!--<div class="row">
+          <div class="col-sm">
+            <button type="button" onclick="animateExposure()" class="btn btn-round2" style="background-image: url('../src/img/icons/day-night.png');"> </button>
+        </div>
+          <div class="col-sm">
+            <button type="button" class="btn btn-round2" style="background-image: url('../src/img/icons/temperatura.png');"> </button>
+        </div>-->
+        <div class="col-sm">
+            <button type="button" onclick="switchSrc(this, 'invernadero/invernadero')" class="btn btn-round2" style="background-image: url('../src/img/icons/invernadero.png');"> </button>
+        </div>
+        <div class="col-sm">
+            <button type="button" onclick="redirectToPage()" class="btn btn-round2" style="background-image: url('../src/img/icons/ar.png');"> </button>
+        </div>
+        </div>
     </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script>
-      function redirectToPage() { // Redirigir a una URL específica window.location.href = "./plant_detail.html"; } 
-    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+        <script>
+            function redirectToPage() {
+              // Redirigir a una URL específica
+              window.location.href = "./plant_detail.html";
+            }
+          </script>
+
     <script src="../src/js/codeBackground.js"></script>
     <script src="../src/js/ia.js"></script>
-  </body>
+</body>
+
 </html>
