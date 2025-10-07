@@ -1,298 +1,1236 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Puntos de Interés en Modelo 3D - USB</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Supervivencia - Modelo 3D USB</title>
+    
+     External Dependencies 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+        :root {
+            /* Color Palette - Natural & Scientific */
+            --primary: #16a34a;
+            --primary-dark: #15803d;
+            --primary-light: #22c55e;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            
+            /* Neutrals */
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --surface-dark: #f1f5f9;
+            --border: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            
+            /* Spacing */
+            --radius: 12px;
+            --radius-sm: 8px;
+            --radius-lg: 16px;
+        }
 
-  <!-- Model Viewer -->
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
 
-  <!-- CSS personalizados -->
-  <link rel="stylesheet" href="../src/css/index_invernadero.css">
-  <link rel="stylesheet" href="../src/css/model_viewer_style.css">
+        /* Header */
+        .header {
+            background: var(--background);
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid var(--border);
+        }
 
-  <style>
-    body {
-      font-family: 'Fredoka', sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-    }
+        .logo-container {
+            max-width: 200px;
+            margin: 0 auto;
+        }
 
-    header {
-      background: linear-gradient(90deg, #004b8d, #007bff);
-      color: white;
-      padding: 1rem 0;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+        .logo-container img {
+            width: 100%;
+            height: auto;
+        }
 
-    header img {
-      width: 180px;
-    }
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
 
-    model-viewer {
-      width: 100%;
-      height: 70vh;
-      background-color: #fff;
-      border-radius: 1rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      margin-top: 2rem;
-    }
+        /* 3D Viewer Section */
+        .viewer-section {
+            background: var(--background);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .slider {
-      display: flex;
-      justify-content: center;
-      gap: 0.8rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
-    }
+        .viewer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
 
-    .slide {
-      width: 80px;
-      height: 80px;
-      background-size: cover;
-      background-position: center;
-      border: 3px solid transparent;
-      border-radius: 0.75rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
+        model-viewer {
+            width: 100%;
+            height: 500px;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
+        }
 
-    .slide:hover {
-      transform: scale(1.08);
-      border-color: #007bff;
-    }
+        /* Growth Stages */
+        .stages-container {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
 
-    .slide.selected {
-      border-color: #007bff;
-      transform: scale(1.1);
-    }
+        .stages-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .card {
-      border: none;
-      border-radius: 1rem;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-      padding: 1.5rem;
-      background-color: #fff;
-    }
+        .stages-title i {
+            color: var(--primary);
+        }
 
-    .btn-round {
-      border-radius: 50%;
-      width: 42px;
-      height: 42px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-    }
+        .stages-slider {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--surface-dark);
+        }
 
-    #result,
-    #resultVariables,
-    #resultGPT {
-      background: #f0f4ff;
-      border-radius: 1rem;
-      padding: 1rem;
-      margin-top: 1rem;
-      text-align: left;
-      font-weight: 500;
-      min-height: 2.5rem;
-    }
+        .stages-slider::-webkit-scrollbar {
+            height: 6px;
+        }
 
-    footer {
-      background-color: #f1f1f1;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-  </style>
+        .stages-slider::-webkit-scrollbar-track {
+            background: var(--surface-dark);
+            border-radius: 3px;
+        }
+
+        .stages-slider::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .stage-button {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--border);
+            border-radius: var(--radius);
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stage-button::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stage-button:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stage-button:hover::after {
+            background: rgba(0, 0, 0, 0);
+        }
+
+        .stage-button.selected {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+            transform: scale(1.05);
+        }
+
+        .stage-button.selected::after {
+            background: rgba(22, 163, 74, 0.1);
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--background);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--surface-dark);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--primary);
+            font-size: 1.75rem;
+        }
+
+        .info-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            background: var(--background);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.25rem;
+        }
+
+        .info-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-field label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-field input {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--background);
+            color: var(--text-primary);
+        }
+
+        .form-field input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+        }
+
+        .form-field input:hover {
+            border-color: var(--primary-light);
+        }
+
+        /* Predict Button */
+        .predict-button {
+            margin-top: 2rem;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .predict-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .predict-button:active {
+            transform: translateY(0);
+        }
+
+        /* Loading State */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--surface-dark);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Results Section */
+        .results-section {
+            display: none;
+            background: var(--background);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .results-section.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .prediction-result {
+            text-align: center;
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+        }
+
+        .prediction-result.survive {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 2px solid var(--success);
+        }
+
+        .prediction-result.die {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border: 2px solid var(--danger);
+        }
+
+        .prediction-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .prediction-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .prediction-confidence {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Variables Status */
+        .variables-status {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .variable-card {
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--border);
+            background: var(--surface);
+        }
+
+        .variable-card.optimal {
+            border-color: var(--success);
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+
+        .variable-card.stable {
+            border-color: var(--warning);
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        }
+
+        .variable-card.bad {
+            border-color: var(--danger);
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+
+        .variable-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .variable-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .variable-status {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
+
+        /* Recommendation */
+        .recommendation-section {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+        }
+
+        .recommendation-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .recommendation-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .icon-button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .icon-button:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .icon-button.secondary {
+            background: var(--text-muted);
+        }
+
+        .recommendation-text {
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .fab-button {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .fab-button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .fab-button.secondary {
+            background: var(--secondary);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--background);
+            border-radius: var(--radius-lg);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: var(--surface);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.25rem;
+        }
+
+        .modal-close:hover {
+            background: var(--surface-dark);
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        .data-table thead {
+            background: var(--surface);
+        }
+
+        .data-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .data-table tbody tr:hover {
+            background: var(--surface);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 0 1rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .variables-status {
+                grid-template-columns: 1fr;
+            }
+
+            model-viewer {
+                height: 400px;
+            }
+
+            .action-buttons {
+                bottom: 1rem;
+                right: 1rem;
+            }
+
+            .modal-content {
+                margin: 1rem;
+            }
+
+            .data-table {
+                font-size: 0.75rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 {
+            margin-top: 1rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
-
 <body>
+     Header 
+    <header class="header">
+        <div class="logo-container">
+            <img src="../src/img/logo_cop_usb.png" alt="Logo USB">
+        </div>
+    </header>
 
-  <!-- HEADER -->
-  <header>
-    <a href="../index.html">
-      <img src="../src/img/logo_cop_usb.png" alt="Logo Universidad de San Buenaventura">
-    </a>
-    <h3 class="mt-2 fw-light">Predicción de Supervivencia del Frijol - Modelo 3D</h3>
-  </header>
+     Main Container 
+    <div class="main-container">
+         3D Viewer Section 
+        <div class="viewer-section">
+            <model-viewer 
+                id="plantViewer"
+                src="../src/bean/Frijol_0.glb"
+                alt="Modelo 3D de una planta"
+                auto-rotate
+                camera-controls
+                camera-orbit="45deg 55deg 4m"
+                ar
+                scale="0.2 0.2 0.2"
+                ar-modes="webxr scene-viewer quick-look"
+                exposure="0.7"
+                shadow-intensity="1"
+                shadow-softness="1">
+            </model-viewer>
 
-  <!-- MODEL VIEWER -->
-  <div class="container mt-4">
-    <model-viewer id="plantViewer" src="../src/bean/Frijol_0.glb" alt="Modelo 3D de una planta" auto-rotate camera-controls
-      camera-orbit="45deg 55deg 4m" scale="0.2 0.2 0.2" ar ar-modes="webxr scene-viewer quick-look" exposure="0.7"
-      shadow-intensity="1" shadow-softness="1">
-    </model-viewer>
+             Growth Stages 
+            <div class="stages-container">
+                <div class="stages-title">
+                    <i class="bi bi-graph-up"></i>
+                    Etapas de Crecimiento
+                </div>
+                <div class="stages-slider" id="stagesSlider">
+                    <button class="stage-button selected" onclick="switchStage(this, 'bean/Frijol_0')"
+                        style="background-image: url('../src/img/steps/1.png');"></button>
+                    <button class="stage-button" onclick="switchStage(this, 'bean/Frijol_1')"
+                        style="background-image: url('../src/img/steps/3.png');"></button>
+                    <button class="stage-button" onclick="switchStage(this, 'bean/Frijol_2')"
+                        style="background-image: url('../src/img/steps/4.png');"></button>
+                    <button class="stage-button" onclick="switchStage(this, 'bean/Frijol_3')"
+                        style="background-image: url('../src/img/steps/5.png');"></button>
+                    <button class="stage-button" onclick="switchStage(this, 'bean/Frijol_4')"
+                        style="background-image: url('../src/img/steps/6.png');"></button>
+                    <button class="stage-button" onclick="switchStage(this, 'bean/Frijol_5')"
+                        style="background-image: url('../src/img/steps/7.png');"></button>
+                    <button class="stage-button" onclick="switchStage(this, 'bean/Frijol_6')"
+                        style="background-image: url('../src/img/steps/8.png');"></button>
+                </div>
+            </div>
+        </div>
 
-    <!-- SLIDER -->
-    <div id="menuEtapas" class="slider">
-      <button class="slide selected" onclick="switchSrc(this, 'bean/Frijol_0')"
-        style="background-image: url('../src/img/steps/1.png');"></button>
-      <button class="slide" onclick="switchSrc(this, 'bean/Frijol_1')"
-        style="background-image: url('../src/img/steps/3.png');"></button>
-      <button class="slide" onclick="switchSrc(this, 'bean/Frijol_2')"
-        style="background-image: url('../src/img/steps/4.png');"></button>
-      <button class="slide" onclick="switchSrc(this, 'bean/Frijol_3')"
-        style="background-image: url('../src/img/steps/5.png');"></button>
-      <button class="slide" onclick="switchSrc(this, 'bean/Frijol_4')"
-        style="background-image: url('../src/img/steps/6.png');"></button>
-      <button class="slide" onclick="switchSrc(this, 'bean/Frijol_5')"
-        style="background-image: url('../src/img/steps/7.png');"></button>
-      <button class="slide" onclick="switchSrc(this, 'bean/Frijol_6')"
-        style="background-image: url('../src/img/steps/8.png');"></button>
+         Form Section 
+        <div class="form-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="bi bi-clipboard-data"></i>
+                    Predicción de Supervivencia
+                </h2>
+                <button class="info-button" onclick="openModal('modalRanges')">
+                    <i class="bi bi-info-circle"></i>
+                </button>
+            </div>
+
+            <form id="plantForm">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="temperatura">
+                            <i class="bi bi-thermometer-half"></i>
+                            Temperatura (°C)
+                        </label>
+                        <input type="number" id="temperatura" step="any" value="20" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="humedad_suelo">
+                            <i class="bi bi-droplet"></i>
+                            Humedad del Suelo (%)
+                        </label>
+                        <input type="number" id="humedad_suelo" step="any" value="60" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="humedad_ambiente">
+                            <i class="bi bi-moisture"></i>
+                            Humedad Ambiente (%)
+                        </label>
+                        <input type="number" id="humedad_ambiente" step="any" value="60" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="luz">
+                            <i class="bi bi-sun"></i>
+                            Luz (Lux)
+                        </label>
+                        <input type="number" id="luz" step="any" value="4000" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="ph_suelo">
+                            <i class="bi bi-water"></i>
+                            pH del Suelo
+                        </label>
+                        <input type="number" id="ph_suelo" step="any" value="6" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="co2">
+                            <i class="bi bi-cloud"></i>
+                            CO₂ (ppm)
+                        </label>
+                        <input type="number" id="co2" step="any" value="400" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="nitrogeno">
+                            <i class="bi bi-circle"></i>
+                            Nitrógeno (ppm)
+                        </label>
+                        <input type="number" id="nitrogeno" step="any" value="20" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="fosforo">
+                            <i class="bi bi-circle"></i>
+                            Fósforo (ppm)
+                        </label>
+                        <input type="number" id="fosforo" step="any" value="20" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="potasio">
+                            <i class="bi bi-circle"></i>
+                            Potasio (ppm)
+                        </label>
+                        <input type="number" id="potasio" step="any" value="200" required>
+                    </div>
+                </div>
+
+                <button type="button" class="predict-button" onclick="predict()">
+                    <i class="bi bi-cpu"></i>
+                    Realizar Predicción
+                </button>
+            </form>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Analizando datos ambientales...</p>
+            </div>
+        </div>
+
+         Results Section 
+        <div class="results-section" id="resultsSection">
+            <div class="prediction-result" id="predictionResult">
+                <div class="prediction-icon" id="predictionIcon">🌱</div>
+                <div class="prediction-text" id="predictionText">Resultado de la predicción</div>
+                <div class="prediction-confidence" id="predictionConfidence">Confianza: 95%</div>
+            </div>
+
+            <div class="variables-status" id="variablesStatus">
+                 Variables will be populated by JavaScript 
+            </div>
+
+            <div class="recommendation-section">
+                <div class="recommendation-header">
+                    <h3 class="recommendation-title">
+                        <i class="bi bi-lightbulb"></i>
+                        Recomendaciones
+                    </h3>
+                    <div class="recommendation-actions">
+                        <button class="icon-button" onclick="speakRecommendation()" title="Leer recomendación">
+                            <i class="bi bi-volume-up"></i>
+                        </button>
+                        <button class="icon-button" onclick="openModal('modalRecommendation')" title="Ver detalles">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="recommendation-text" id="recommendationText">
+                    Las recomendaciones aparecerán aquí después de realizar la predicción.
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- FORMULARIO -->
-  <div class="container mt-5">
-    <div class="card">
-      <div class="text-center mb-4">
-        <h4 class="fw-semibold">Predicción de Supervivencia</h4>
-        <button id="modalEstandar" class="btn btn-primary btn-round" data-bs-toggle="modal" data-bs-target="#modalTab">
-          <i class="bi bi-info-circle"></i>
+     Floating Action Buttons 
+    <div class="action-buttons">
+        <button class="fab-button" onclick="switchStage(this, 'invernadero/invernadero')" title="Ver invernadero">
+            <i class="bi bi-house"></i>
         </button>
-      </div>
-
-      <form id="plant-form" class="mx-auto" style="max-width: 500px;">
-        <div class="row mb-3">
-          <label class="col-sm-6 col-form-label text-end">Temperatura (°C):</label>
-          <div class="col-sm-6"><input type="number" id="temperatura" class="form-control" value="20" required></div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="col-sm-6 col-form-label text-end">Humedad del Suelo (%):</label>
-          <div class="col-sm-6"><input type="number" id="humedad_suelo" class="form-control" value="60" required></div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="col-sm-6 col-form-label text-end">Humedad Ambiente (%):</label>
-          <div class="col-sm-6"><input type="number" id="humedad_ambiente" class="form-control" value="60" required></div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="col-sm-6 col-form-label text-end">Luz (Lux):</label>
-          <div class="col-sm-6"><input type="number" id="luz" class="form-control" value="4000" required></div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="col-sm-6 col-form-label text-end">pH del Suelo:</label>
-          <div class="col-sm-6"><input type="number" id="ph_suelo" class="form-control" value="6" required></div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="col-sm-6 col-form-label text-end">CO₂ (ppm):</label>
-          <div class="col-sm-6"><input type="number" id="co2" class="form-control" value="400" required></div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="col-sm-6 col-form-label text-end">Nitrógeno (ppm):</label>
-          <div class="col-sm-6"><input type="number" id="nitrogeno" class="form-control" value="20" required></div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="col-sm-6 col-form-label text-end">Fósforo (ppm):</label>
-          <div class="col-sm-6"><input type="number" id="fosforo" class="form-control" value="20" required></div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="col-sm-6 col-form-label text-end">Potasio (ppm):</label>
-          <div class="col-sm-6"><input type="number" id="potasio" class="form-control" value="200" required></div>
-        </div>
-      </form>
-
-      <div class="text-center">
-        <button id="predecirBtn" class="btn btn-outline-primary px-4 mt-3" onclick="predict()">Predecir</button>
-        <div id="loading" class="mt-3 text-muted">Cargando...</div>
-        <div id="result" class="result"></div>
-        <div id="error" class="error text-danger"></div>
-      </div>
+        <button class="fab-button secondary" onclick="redirectToAR()" title="Ver en AR">
+            <i class="bi bi-badge-ar"></i>
+        </button>
     </div>
-  </div>
 
-  <!-- MODALES -->
-  <!-- Modal Tabla de Rangos -->
-  <div class="modal fade" id="modalTab" tabindex="-1" aria-labelledby="modalTabLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalTabLabel">Tabla de Rangos de Variables</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+     Modal: Variable Ranges 
+    <div class="modal" id="modalRanges">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tabla de Rangos de Variables</h3>
+                <button class="modal-close" onclick="closeModal('modalRanges')">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Unidad</th>
+                            <th>Malos</th>
+                            <th>Estables</th>
+                            <th>Óptimos</th>
+                            <th>Nota Adicional</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Temperatura</td>
+                            <td>°C</td>
+                            <td>10°C a 35°C</td>
+                            <td>15°C a 20°C</td>
+                            <td>20°C a 30°C</td>
+                            <td>Temperaturas extremas pueden afectar el crecimiento y la salud.</td>
+                        </tr>
+                        <tr>
+                            <td>Humedad (Suelo)</td>
+                            <td>%</td>
+                            <td>0% a 50%</td>
+                            <td>50% a 70%</td>
+                            <td>60% a 70%</td>
+                            <td>Humedad baja puede causar estrés hídrico; alta puede promover enfermedades.</td>
+                        </tr>
+                        <tr>
+                            <td>Humedad (Ambiente)</td>
+                            <td>%</td>
+                            <td>0% a 50%</td>
+                            <td>50% a 70%</td>
+                            <td>50% a 70%</td>
+                            <td>Controlar para evitar enfermedades fúngicas y estrés por sequía.</td>
+                        </tr>
+                        <tr>
+                            <td>Luz (Intensidad)</td>
+                            <td>Lux</td>
+                            <td>0 a 2000 lux</td>
+                            <td>2000 a 4000 lux</td>
+                            <td>4000 a 8000 lux</td>
+                            <td>Intensidad insuficiente puede limitar la fotosíntesis; excesiva puede causar daño.</td>
+                        </tr>
+                        <tr>
+                            <td>pH del Suelo</td>
+                            <td>-</td>
+                            <td>4.0 a 5.5</td>
+                            <td>5.5 a 6.0</td>
+                            <td>6.0 a 7.0</td>
+                            <td>pH fuera del rango óptimo puede afectar la disponibilidad de nutrientes.</td>
+                        </tr>
+                        <tr>
+                            <td>Contenido de Nutrientes</td>
+                            <td>ppm (mg/kg)</td>
+                            <td>N: 0 a 5, P: 0 a 10, K: 0 a 50</td>
+                            <td>N: 10 a 20, P: 30 a 60, K: 150 a 250</td>
+                            <td>N: 20 a 30, P: 40 a 70, K: 200 a 300</td>
+                            <td>Deficiencias o excesos de nutrientes pueden afectar el crecimiento y desarrollo.</td>
+                        </tr>
+                        <tr>
+                            <td>CO₂ (Aire)</td>
+                            <td>ppm</td>
+                            <td>0 a 300 ppm</td>
+                            <td>300 a 600 ppm</td>
+                            <td>800 a 1000 ppm</td>
+                            <td>CO₂ >1000 ppm puede causar estrés y reducir el rendimiento. Asegurar ventilación adecuada.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="modal-body">
-          <table class="table table-striped table-hover align-middle text-center">
-            <thead class="table-primary">
-              <tr>
-                <th>Característica</th>
-                <th>Unidad</th>
-                <th>Malos</th>
-                <th>Estables</th>
-                <th>Óptimos</th>
-                <th>Nota</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Temperatura</td><td>°C</td><td>10–35</td><td>15–20</td><td>20–30</td><td>Evita extremos térmicos.</td></tr>
-              <tr><td>Humedad (Suelo)</td><td>%</td><td>0–50</td><td>50–70</td><td>60–70</td><td>Evita exceso de humedad.</td></tr>
-              <tr><td>Humedad (Ambiente)</td><td>%</td><td>0–50</td><td>50–70</td><td>50–70</td><td>Controlar hongos.</td></tr>
-              <tr><td>Luz</td><td>Lux</td><td>0–2000</td><td>2000–4000</td><td>4000–8000</td><td>Evitar exceso solar.</td></tr>
-              <tr><td>pH del Suelo</td><td>-</td><td>4.0–5.5</td><td>5.5–6.0</td><td>6.0–7.0</td><td>Influye en nutrientes.</td></tr>
-              <tr><td>Nutrientes</td><td>ppm</td><td>N: 0–5<br>P: 0–10<br>K: 0–50</td><td>N: 10–20<br>P: 30–60<br>K: 150–250</td><td>N: 20–30<br>P: 40–70<br>K: 200–300</td><td>Evitar deficiencias.</td></tr>
-              <tr><td>CO₂</td><td>ppm</td><td>0–300</td><td>300–600</td><td>800–1000</td><td>Buena ventilación.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- Modal Recomendación -->
-  <div class="modal fade" id="modalResult" tabindex="-1" aria-labelledby="modalResultLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalResultLabel">Recomendación</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+     Modal: Recommendation Details 
+    <div class="modal" id="modalRecommendation">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Recomendación Detallada</h3>
+                <button class="modal-close" onclick="closeModal('modalRecommendation')">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="detailedRecommendation">
+                    Las recomendaciones detalladas aparecerán aquí después de realizar la predicción.
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div id="resultGPT" class="result"></div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2025 Universidad de San Buenaventura | Proyecto de Predicción de Supervivencia del Frijol
-  </footer>
+    <script>
+        // Global variables
+        let speechSynthesis = window.speechSynthesis;
+        let currentUtterance = null;
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const modelViewer = document.querySelector("model-viewer");
+        // Switch 3D model stage
+        function switchStage(element, modelPath) {
+            const modelViewer = document.getElementById('plantViewer');
+            modelViewer.src = `..src/${modelPath}.glb`;
+            
+            // Update selected state
+            document.querySelectorAll('.stage-button').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
 
-    window.switchSrc = (el, name) => {
-      modelViewer.src = "../src/" + name + ".glb";
-      document.querySelectorAll(".slide").forEach(s => s.classList.remove("selected"));
-      el.classList.add("selected");
-    };
+        // Predict function
+        function predict() {
+            const loading = document.getElementById('loading');
+            const resultsSection = document.getElementById('resultsSection');
+            
+            // Show loading
+            loading.classList.add('active');
+            resultsSection.classList.remove('active');
 
-    function redirectToPage() {
-      window.location.href = "./plant_detail.html";
-    }
-  </script>
+            // Get form values
+            const data = {
+                temperatura: parseFloat(document.getElementById('temperatura').value),
+                humedad_suelo: parseFloat(document.getElementById('humedad_suelo').value),
+                humedad_ambiente: parseFloat(document.getElementById('humedad_ambiente').value),
+                luz: parseFloat(document.getElementById('luz').value),
+                ph_suelo: parseFloat(document.getElementById('ph_suelo').value),
+                co2: parseFloat(document.getElementById('co2').value),
+                nitrogeno: parseFloat(document.getElementById('nitrogeno').value),
+                fosforo: parseFloat(document.getElementById('fosforo').value),
+                potasio: parseFloat(document.getElementById('potasio').value)
+            };
 
-  <script src="../src/js/codeBackground.js"></script>
-  <script src="../src/js/ia.js"></script>
+            // Simulate API call (replace with actual API call)
+            setTimeout(() => {
+                // Mock prediction result
+                const willSurvive = Math.random() > 0.3;
+                const confidence = Math.floor(Math.random() * 20) + 80;
 
+                displayResults(data, willSurvive, confidence);
+                
+                loading.classList.remove('active');
+                resultsSection.classList.add('active');
+                
+                // Scroll to results
+                resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 2000);
+        }
+
+        // Display prediction results
+        function displayResults(data, willSurvive, confidence) {
+            const predictionResult = document.getElementById('predictionResult');
+            const predictionIcon = document.getElementById('predictionIcon');
+            const predictionText = document.getElementById('predictionText');
+            const predictionConfidence = document.getElementById('predictionConfidence');
+
+            // Update prediction result
+            if (willSurvive) {
+                predictionResult.className = 'prediction-result survive';
+                predictionIcon.textContent = '✅';
+                predictionText.textContent = 'La planta sobrevivirá';
+            } else {
+                predictionResult.className = 'prediction-result die';
+                predictionIcon.textContent = '⚠️';
+                predictionText.textContent = 'La planta está en riesgo';
+            }
+            predictionConfidence.textContent = `Confianza: ${confidence}%`;
+
+            // Display variable status
+            displayVariableStatus(data);
+
+            // Generate recommendations
+            generateRecommendations(data, willSurvive);
+        }
+
+        // Display variable status
+        function displayVariableStatus(data) {
+            const variablesStatus = document.getElementById('variablesStatus');
+            
+            const variables = [
+                { name: 'Temperatura', value: data.temperatura, unit: '°C', optimal: [20, 30], stable: [15, 20] },
+                { name: 'Humedad Suelo', value: data.humedad_suelo, unit: '%', optimal: [60, 70], stable: [50, 70] },
+                { name: 'Humedad Ambiente', value: data.humedad_ambiente, unit: '%', optimal: [50, 70], stable: [50, 70] },
+                { name: 'Luz', value: data.luz, unit: 'Lux', optimal: [4000, 8000], stable: [2000, 4000] },
+                { name: 'pH Suelo', value: data.ph_suelo, unit: '', optimal: [6.0, 7.0], stable: [5.5, 6.0] },
+                { name: 'CO₂', value: data.co2, unit: 'ppm', optimal: [800, 1000], stable: [300, 600] },
+                { name: 'Nitrógeno', value: data.nitrogeno, unit: 'ppm', optimal: [20, 30], stable: [10, 20] },
+                { name: 'Fósforo', value: data.fosforo, unit: 'ppm', optimal: [40, 70], stable: [30, 60] },
+                { name: 'Potasio', value: data.potasio, unit: 'ppm', optimal: [200, 300], stable: [150, 250] }
+            ];
+
+            variablesStatus.innerHTML = variables.map(v => {
+                let status = 'bad';
+                let statusText = 'Malo';
+                let icon = '❌';
+
+                if (v.value >= v.optimal[0] && v.value <= v.optimal[1]) {
+                    status = 'optimal';
+                    statusText = 'Óptimo';
+                    icon = '✅';
+                } else if (v.value >= v.stable[0] && v.value <= v.stable[1]) {
+                    status = 'stable';
+                    statusText = 'Estable';
+                    icon = '⚠️';
+                }
+
+                return `
+                    <div class="variable-card ${status}">
+                        <div class="variable-name">${icon} ${v.name}</div>
+                        <div class="variable-value">${v.value} ${v.unit}</div>
+                        <div class="variable-status">${statusText}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Generate recommendations
+        function generateRecommendations(data, willSurvive) {
+            const recommendationText = document.getElementById('recommendationText');
+            const detailedRecommendation = document.getElementById('detailedRecommendation');
+
+            let recommendations = [];
+
+            // Temperature
+            if (data.temperatura < 20) {
+                recommendations.push('Aumentar la temperatura del ambiente a 20-30°C para condiciones óptimas.');
+            } else if (data.temperatura > 30) {
+                recommendations.push('Reducir la temperatura del ambiente, ya que está por encima del rango óptimo.');
+            }
+
+            // Soil humidity
+            if (data.humedad_suelo < 60) {
+                recommendations.push('Incrementar el riego para alcanzar una humedad del suelo entre 60-70%.');
+            } else if (data.humedad_suelo > 70) {
+                recommendations.push('Reducir el riego para evitar exceso de humedad que puede causar enfermedades.');
+            }
+
+            // Light
+            if (data.luz < 4000) {
+                recommendations.push('Aumentar la intensidad de luz a 4000-8000 lux para mejorar la fotosíntesis.');
+            }
+
+            // pH
+            if (data.ph_suelo < 6.0) {
+                recommendations.push('Ajustar el pH del suelo a 6.0-7.0 para mejorar la disponibilidad de nutrientes.');
+            }
+
+            // Nutrients
+            if (data.nitrogeno < 20) {
+                recommendations.push('Aplicar fertilizante nitrogenado para alcanzar 20-30 ppm.');
+            }
+            if (data.fosforo < 40) {
+                recommendations.push('Aumentar el fósforo en el suelo a 40-70 ppm.');
+            }
+            if (data.potasio < 200) {
+                recommendations.push('Incrementar el potasio a 200-300 ppm para mejor desarrollo.');
+            }
+
+            const recommendationHTML = recommendations.length > 0 
+                ? recommendations.map(r => `<p>• ${r}</p>`).join('')
+                : '<p>✅ Todas las condiciones están en rangos óptimos. Continuar con el mantenimiento actual.</p>';
+
+            recommendationText.innerHTML = recommendationHTML;
+            detailedRecommendation.innerHTML = recommendationHTML;
+        }
+
+        // Speech synthesis
+        function speakRecommendation() {
+            const text = document.getElementById('recommendationText').innerText;
+            
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+                return;
+            }
+
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.lang = 'es-ES';
+            currentUtterance.rate = 0.9;
+            speechSynthesis.speak(currentUtterance);
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // Redirect to AR
+        function redirectToAR() {
+            window.location.href = './plant_detail.html';
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
