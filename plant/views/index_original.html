@@ -379,7 +379,19 @@
             }
           </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const modalResult = document.getElementById("modalResult");
+            modalResult.addEventListener("hide.bs.modal", function () {
+                if (document.activeElement) {
+                    document.activeElement.blur();
+                }
+            });
+        });
+    </script>
+
     <script src="../src/js/codeBackground.js"></script>
+    <script src="../src/js/env.js"></script>
     <script src="../src/js/ia.js"></script>
 </body>
 

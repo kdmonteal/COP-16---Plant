@@ -3,6 +3,14 @@
     input.addEventListener('input', predict);
 });*/
 
+const API_BASE_URL = (window.__APP_CONFIG__ && window.__APP_CONFIG__.API_BASE_URL)
+    ? window.__APP_CONFIG__.API_BASE_URL.replace(/\/$/, '')
+    : (window.location.hostname === 'localhost'
+        ? 'http://localhost:5003'
+        : `${window.location.origin}`);
+
+const PREDICT_ENDPOINT = `${API_BASE_URL}/predict`;
+
 async function predict() {
     document.getElementById('loading').style.display = 'block';
 
@@ -27,7 +35,7 @@ async function predict() {
     };
     console.log("Datos enviados:", JSON.stringify(data, null, 2));
     try {
-        const response = await fetch('http://93.127.213.95:5003/predict', {
+        const response = await fetch(PREDICT_ENDPOINT, {
             method: "POST",
             mode: "cors",
             headers: {

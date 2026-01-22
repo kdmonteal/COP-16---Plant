@@ -1,0 +1,9 @@
+# Node modules from host should not enter the image build context
+node_modules
+
+# macOS metadata
+.DS_Store
+
+# Git metadata
+.git
+.gitignore

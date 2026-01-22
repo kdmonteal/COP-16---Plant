@@ -158,7 +158,6 @@ a:hover {
 
 .section-title {
   text-align: center;
-  margin-bottom: 80px;
 }
 .section-title h2 {
   font-size: 35px;
@@ -172,6 +171,9 @@ a:hover {
   .section-title p {
     width: 100%;
   }
+}
+.section-title {
+  margin-bottom: 80px;
 }
 
 .page-title {
@@ -394,6 +396,11 @@ button:focus,
 .main-nav .navbar-nav .nav-item.active .nav-link {
   color: #2e7eed;
 }
+@media (max-width: 992px) {
+  .main-nav .navbar-nav .nav-item.active .nav-link:before {
+    display: none;
+  }
+}
 .main-nav .navbar-nav .nav-item.active .nav-link:before {
   content: "";
   background: #2e7eed;
@@ -402,11 +409,6 @@ button:focus,
   position: absolute;
   top: 0;
   left: 20%;
-}
-@media (max-width: 992px) {
-  .main-nav .navbar-nav .nav-item.active .nav-link:before {
-    display: none;
-  }
 }
 .main-nav .dropdown {
   position: relative;
@@ -689,7 +691,6 @@ button:focus,
 }
 .jd-modal .modal-content .modal-body .block-2 {
   display: flex;
-  margin-bottom: 70px;
 }
 .jd-modal .modal-content .modal-body .block-2 .title {
   width: 30%;
@@ -711,6 +712,9 @@ button:focus,
 .jd-modal .modal-content .modal-body .block-2 .details ul li span {
   padding-right: 5px;
   color: #000;
+}
+.jd-modal .modal-content .modal-body .block-2 {
+  margin-bottom: 70px;
 }
 .jd-modal .modal-content .modal-body .form-title {
   margin-bottom: 30px;
@@ -787,7 +791,6 @@ button:focus,
   background: #fff;
   padding: 30px 40px;
   margin-bottom: 30px;
-  border-radius: 5px;
 }
 .services .service-block:last-child {
   margin-bottom: 0;
@@ -796,6 +799,9 @@ button:focus,
   .services .service-block:last-child {
     margin-bottom: 30px;
   }
+}
+.services .service-block {
+  border-radius: 5px;
 }
 .services .service-block h3 {
   line-height: 30px;
@@ -866,7 +872,7 @@ button:focus,
 }
 @media (max-width: 768px) {
   .feature .feature-content h2,
-.feature .feature-content p {
+  .feature .feature-content p {
     text-align: center;
   }
 }
@@ -1302,15 +1308,15 @@ hr {
 .post-sm .post-thumb img {
   transition: 0.3s ease;
 }
-.post-sm .post-title {
-  margin-bottom: 15px;
-}
 .post-sm .post-title h3 a {
   color: #000;
   font-size: 20px;
 }
 .post-sm .post-title h3 a:hover {
   color: #2e7eed;
+}
+.post-sm .post-title {
+  margin-bottom: 15px;
 }
 .post-sm:hover .post-thumb img {
   transform: scale(1.3);
@@ -1380,9 +1386,6 @@ hr {
   height: 150px;
   border-radius: 100%;
 }
-.blog-single .about-author .media .media-body {
-  margin-left: 40px;
-}
 @media (max-width: 480px) {
   .blog-single .about-author .media .media-body {
     flex-grow: 1;
@@ -1391,6 +1394,9 @@ hr {
     margin-left: 0;
     margin-top: 20px;
   }
+}
+.blog-single .about-author .media .media-body {
+  margin-left: 40px;
 }
 .blog-single .about-author .media .media-body p {
   margin-bottom: 15px;
@@ -1650,30 +1656,25 @@ hr {
     padding: 30px;
   }
 }
-.faq .block .faq-item {
-  margin-bottom: 40px;
-}
-.faq .block .faq-item .faq-item-title {
-  margin-bottom: 30px;
-}
 .faq .block .faq-item .faq-item-title h2 {
   font-size: 30px;
   border-bottom: 1px solid #cccccc;
+}
+.faq .block .faq-item .faq-item-title {
+  margin-bottom: 30px;
 }
 .faq .block .faq-item .faq-item-title:last-child {
   margin-bottom: 0;
 }
 .faq .block .faq-item .item .item-link {
   position: relative;
-  padding: 10px 0 10px 18px;
-  padding-left: 25px;
+}
+.faq .block .faq-item .item .item-link a span {
+  margin-right: 5px;
 }
 .faq .block .faq-item .item .item-link a {
   font-size: 20px;
   color: #000;
-}
-.faq .block .faq-item .item .item-link a span {
-  margin-right: 5px;
 }
 .faq .block .faq-item .item .item-link:before {
   font-family: "themify";
@@ -1684,15 +1685,21 @@ hr {
   font-size: 15px;
   top: 15px;
 }
+.faq .block .faq-item .item .item-link {
+  padding: 10px 0 10px 18px;
+  padding-left: 25px;
+}
 .faq .block .faq-item .item .accordion-block {
   background: #fafafa;
 }
 .faq .block .faq-item .item .accordion-block p {
   padding: 20px;
 }
+.faq .block .faq-item {
+  margin-bottom: 40px;
+}
 
 .privacy .privacy-nav {
-  position: -webkit-sticky;
   position: sticky;
   top: 15px;
   background: #fafafa;
@@ -1760,7 +1767,6 @@ hr {
 }
 .user-login .block .image {
   flex-basis: 100%;
-  margin-right: 40px;
 }
 @media (max-width: 768px) {
   .user-login .block .image {
@@ -1773,17 +1779,20 @@ hr {
 .user-login .block .image img {
   border-radius: 8px;
 }
+.user-login .block .image {
+  margin-right: 40px;
+}
+@media (max-width: 768px) {
+  .user-login .block .content {
+    flex-grow: 1;
+  }
+}
 .user-login .block .content {
   flex-basis: 100%;
   align-self: center;
   padding: 50px;
   border: 1px solid #cccccc;
   border-radius: 4px;
-}
-@media (max-width: 768px) {
-  .user-login .block .content {
-    flex-grow: 1;
-  }
 }
 .user-login .block .content .logo {
   margin-bottom: 80px;

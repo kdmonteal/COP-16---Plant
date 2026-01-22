@@ -13,7 +13,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>AgriSmart | USB Cali</title>
+  <title>Small Apps | Bootstrap App Landing Template</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -40,11 +40,10 @@
   <!-- CUSTOM CSS -->
   <link href="css/style.css" rel="stylesheet">
 
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-
 </head>
 
 <body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
+
 
 <nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
   <div class="container">
@@ -56,20 +55,59 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Home</a>
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Home
+            <span><i class="ti-angle-down"></i></span>
+          </a>
+          <!-- Dropdown list -->
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item active" href="index.html">Homepage</a></li>
+            <li><a class="dropdown-item" href="homepage-2.html">Homepage 2</a></li>
+            <li><a class="dropdown-item active3" href="homepage-3.html">Homepage 3</a></li>
+
+            <li class="dropdown dropdown-submenu dropright">
+              <a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0301" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu</a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdown0301">
+                <li><a class="dropdown-item" href="index.html">Submenu 11</a></li>
+                <li><a class="dropdown-item" href="index.html">Submenu 12</a></li>
+              </ul>
+            </li>
+          </ul>
         </li>
         <li class="nav-item dropdown @@pages">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Process
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Pages
             <span><i class="ti-angle-down"></i></span>
           </a>
           <!-- Dropdown list -->
           <ul class="dropdown-menu">
             <li><a class="dropdown-item @@team" href="team.html">Team</a></li>
-            <li><a class="dropdown-item @@career" href="career.html">Investigation</a></li>
+            <li><a class="dropdown-item @@career" href="career.html">Career</a></li>
+            <li><a class="dropdown-item @@blog" href="blog.html">Blog</a></li>
+            <li><a class="dropdown-item @@blogSingle" href="blog-single.html">Blog Single</a></li>
+            <li><a class="dropdown-item @@privacy" href="privacy-policy.html">Privacy</a></li>
+            <li><a class="dropdown-item @@faq" href="FAQ.html">FAQ</a></li>
+            <li><a class="dropdown-item" href="sign-in.html">Sign In</a></li>
+            <li><a class="dropdown-item" href="sign-up.html">Sign Up</a></li>
+            <li><a class="dropdown-item" href="404.html">404</a></li>
+            <li><a class="dropdown-item" href="comming-soon.html">Coming Soon</a></li>
+
+            <li class="dropdown dropdown-submenu dropleft">
+              <a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0501" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu</a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdown0501">
+                <li><a class="dropdown-item" href="index.html">Submenu 21</a></li>
+                <li><a class="dropdown-item" href="index.html">Submenu 22</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li class="nav-item @@about">
           <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item @@contact">
+          <a class="nav-link" href="contact.html">Contact</a>
         </li>
       </ul>
     </div>
@@ -101,9 +139,10 @@
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-md-6 order-2 order-md-1 text-center text-md-left">
-				<h1 class="text-white font-weight-bold mb-4">AgriSmart: Intelligent Technologies for Sustainable and Educational Agriculture</h1>
-				<p class="text-white mb-5">The AgriSmart project revolutionizes agriculture in Valle del Cauca by integrating a patented biosensor to monitor CO2 and other environmental signals.</p>
-				<a href="../../plant/index.html" class="btn btn-main-md">Go to the experience!</a>
+				<h1 class="text-white font-weight-bold mb-4">Showcase your app with Small Apps</h1>
+				<p class="text-white mb-5">Besides its beautiful design. Laapp is an incredibly rich core framework for you to
+					showcase your App.</p>
+				<a href="FAQ.html" class="btn btn-main-md">Download Now</a>
 			</div>
 			<div class="col-md-6 text-center order-1 order-md-2">
 				<img class="img-fluid" src="images/mobile.png" alt="screenshot">
@@ -118,38 +157,22 @@
 		<div class="rounded shadow p-5 bg-white">
 			<div class="row">
 				<div class="col-lg-4 col-md-6 mt-5 mt-md-0 text-center">
-					<i class="ti-signal text-primary h1"></i>
-					<h3 class="mt-4 text-capitalize h5 ">Temperature (°C)</h3>
-					<p class="regular text-muted">Ambient temperature in degrees Celsius. Suggested range: 20°C to 30°C. Affects plant growth and survival rate.</p>
+					<i class="ti-paint-bucket text-primary h1"></i>
+					<h3 class="mt-4 text-capitalize h5 ">themes made easy</h3>
+					<p class="regular text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam non, recusandae
+						tempore ipsam dignissimos molestias.</p>
 				</div>
 				<div class="col-lg-4 col-md-6 mt-5 mt-md-0 text-center">
-					<i class="ti-thought text-primary h1"></i>
-					<h3 class="mt-4 text-capitalize h5 ">Humidity (%)</h3>
-					<p class="regular text-muted">Relative humidity percentage in the environment. Suggested range: 40% to 70%. Humidity is crucial for plant health.</p>
+					<i class="ti-shine text-primary h1"></i>
+					<h3 class="mt-4 text-capitalize h5 ">powerful design</h3>
+					<p class="regular text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam non, recusandae
+						tempore ipsam dignissimos molestias.</p>
 				</div>
 				<div class="col-lg-4 col-md-12 mt-5 mt-lg-0 text-center">
-					<i class="ti-shine text-primary h1"></i>
-					<h3 class="mt-4 text-capitalize h5 ">Light (Lux)</h3>
-					<p class="regular text-muted">Light intensity measured in lumens per square meter. Suggested range: 3000 to 7000 Lux. Influences photosynthesis and plant growth.</p>
-					</p>
-				</div>
-				<div class="col-lg-4 col-md-12 mt-5 mt-lg-3 text-center">
-					<i class="ti-arrow-up text-primary h1"></i>
-					<h3 class="mt-4 text-capitalize h5 ">Soil pH</h3>
-					<p class="regular text-muted">pH level of the soil where plants are growing. Suggested range: 6.0 to 7.5. A pH is essential for nutrient absorption.</p>
-					</p>
-				</div>
-				<div class="col-lg-4 col-md-12 mt-5 mt-lg-3 text-center">
-					<i class="ti-paint-bucket text-primary h1"></i>
-
-					<h3 class="mt-4 text-capitalize h5 ">Nutrients (ppm)</h3>
-					<p class="regular text-muted">Nutrient amounts in parts per million. Suggested range: 100 to 250 ppm. Nutrients are essential for plant growth.</p>
-					</p>
-				</div>
-				<div class="col-lg-4 col-md-12 mt-5 mt-lg-3 text-center">
-					<i class="ti-stats-up text-primary h1"></i>
-					<h3 class="mt-4 text-capitalize h5 ">CO2 concentration</h3>
-					<p class="regular text-muted">Concentration of carbon dioxide in the environment. Suggested range: 0.0 to 1.0. CO2 is necessary for photosynthesis.</p>
+					<i class="ti-thought text-primary h1"></i>
+					<h3 class="mt-4 text-capitalize h5 ">creative content</h3>
+					<p class="regular text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam non, recusandae
+						tempore ipsam dignissimos molestias.</p>
 					</p>
 				</div>
 			</div>
@@ -160,22 +183,26 @@
 <!--==================================
 =            Feature Grid            =
 ===================================-->
-<!--<section class="feature section pt-0">
+<section class="feature section pt-0">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 ml-auto justify-content-center">
+				<!-- Feature Mockup -->
 				<div class="image-content" data-aos="fade-right">
 					<img class="img-fluid" src="images/feature/feature-new-01.jpg" alt="iphone">
 				</div>
 			</div>
 			<div class="col-lg-6 mr-auto align-self-center">
 				<div class="feature-content">
+					<!-- Feature Title -->
 					<h2>Increase your productivity with <a
 							href="https://themefisher.com/products/small-apps-free-app-landing-page-template/">Small Apps</a></h2>
+					<!-- Feature Description -->
 					<p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 						labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
 						aliquip ex ea commodo consequat.</p>
 				</div>
+				<!-- Testimonial Quote -->
 				<div class="testimonial">
 					<p>
 						"InVision is a window into everything that's being designed at Twitter. It gets all of our best work in one
@@ -191,7 +218,7 @@
 			</div>
 		</div>
 	</div>
-</section>-->
+</section>
 
 <section class="feature section pt-0">
 	<div class="container">
@@ -199,30 +226,31 @@
 			<div class="col-lg-6 ml-auto align-self-center">
 				<div class="feature-content">
 					<!-- Feature Title -->
-					<h2>Project Description</h2>
+					<h2>Increase your productivity with <a
+							href="https://themefisher.com/products/small-apps-free-app-landing-page-template/">Small Apps</a></h2>
 					<!-- Feature Description -->
-					<p>Agriculture in the Valle del Cauca, Colombia, is vital due to its favorable climate and rich tradition, with legumes playing a key role in soil fertility and crop rotation. Farmers face challenges in managing these crops efficiently and sustainably. To address this, an intelligent platform using AI, 3D visualizations, and augmented reality (AR) is proposed. This system will monitor real-time data on various environmental factors, using machine learning to predict plant health and survival. AR will allow farmers to interact with 3D crop models and receive personalized recommendations, enhancing decision-making and crop management.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+						dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+						ea commodo consequat.</p>
 				</div>
 				<!-- Testimonial Quote -->
 				<div class="testimonial">
 					<p>
-						"An intelligent platform using AI and AR will enhance legume crop management in the Valle del Cauca, Colombia."
+						"InVision is a window into everything that's being designed at Twitter. It gets all of our best work in one
+						place."
 					</p>
 					<ul class="list-inline meta">
 						<li class="list-inline-item">
-							<img src="images/testimonial/testimonial-Giovanny.png" alt="Giovanny Hidalgo">
+							<img src="images/testimonial/feature-testimonial-thumb.jpg" alt="">
 						</li>
-						<li class="list-inline-item">Giovanny Hidalgo, PhD. Artificial Intelligence
-						</li>
+						<li class="list-inline-item">Jonathon Andrew , Themefisher.com</li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-lg-6 mr-auto justify-content-center">
 				<!-- Feature mockup -->
 				<div class="image-content" data-aos="fade-left">
-					<model-viewer  style=" width: 100%; height: 50vh;" id="plantViewer" src="../../plant/src/bean/Frijol_5.glb" alt="A 3D model of a plant" camera-controls ar
-						ar-modes="webxr scene-viewer quick-look"  exposure="0.7"  shadow-intensity="1" shadow-softness="1">
-					</model-viewer>
+					<img class="img-fluid" src="images/feature/feature-new-02.jpg" alt="ipad">
 				</div>
 			</div>
 		</div>
@@ -238,8 +266,9 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="section-title">
-					<h2>Objectives</h2>
-					<p>Develop an intelligent interactive platform based on artificial intelligence and augmented reality to support the management and sustainability of legume crops in the Cauca Valley, Colombia.</p>
+					<h2>An Interface For Lifestyle</h2>
+					<p><a href="https://themefisher.com/products/small-apps-free-app-landing-page-template/">Small Apps</a> makes
+						it easy to stay on top of your Life Style. No late tasks. No gimmicks.</p>
 				</div>
 			</div>
 		</div>
@@ -250,7 +279,7 @@
 					<img class="img-fluid" src="images/feature/iphone-ipad.jpg" alt="iphone-ipad">
 				</div>
 			</div>
-			<div class="col-lg-6 mr-auto align-self-center">
+			<div class="col-lg-5 mr-auto align-self-center">
 				<div class="service-box">
 					<div class="row align-items-center">
 						<div class="col-md-6 col-xs-12">
@@ -259,9 +288,9 @@
 								<!-- Icon -->
 								<i class="ti-bookmark"></i>
 								<!-- Heading -->
-								<h3>Data model</h3>
+								<h3>Easy Prototyping</h3>
 								<!-- Description -->
-								<p>Design a model that allows collecting and storing environmental variables from different data sources.</p>
+								<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p>
 							</div>
 						</div>
 						<div class="col-md-6 col-xs-12">
@@ -270,9 +299,9 @@
 								<!-- Icon -->
 								<i class="ti-pulse"></i>
 								<!-- Heading -->
-								<h3>Artificial intelligence</h3>
+								<h3>Sensor Bridge</h3>
 								<!-- Description -->
-								<p>Implement artificial intelligence computational techniques to make predictions and recommendations for legume plants based on the data collected.</p>
+								<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p>
 							</div>
 						</div>
 						<div class="col-md-6 col-xs-12">
@@ -281,9 +310,9 @@
 								<!-- Icon -->
 								<i class="ti-bar-chart"></i>
 								<!-- Heading -->
-								<h3>Web development</h3>
+								<h3>Strategist</h3>
 								<!-- Description -->
-								<p>Develop a web platform that integrates augmented reality (AR) and artificial intelligence (AI) computational techniques to provide farmers with real-time tools and data on the management of their crops.</p>
+								<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p>
 							</div>
 						</div>
 						<div class="col-md-6 col-xs-12">
@@ -292,9 +321,9 @@
 								<!-- Icon -->
 								<i class="ti-panel"></i>
 								<!-- Heading -->
-								<h3>Testing</h3>
+								<h3>Art Direction</h3>
 								<!-- Description -->
-								<p>Validate the Leguimonosa case study on the developed web platform.</p>
+								<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p>
 							</div>
 						</div>
 					</div>
@@ -304,6 +333,8 @@
 	</div>
 </section>
 <!--====  End of Services  ====-->
+
+
 <!--=================================
 =            Video Promo            =
 ==================================-->
@@ -314,8 +345,11 @@
 				<div class="content-block">
 					<!-- Heading -->
 					<h2>Watch Our Promo Video</h2>
+					<!-- Promotional Speech -->
+					<p>Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et,
+						porttitor at sem. Vivamus </p>
 					<!-- Popup Video -->
-					<a data-fancybox href="https://youtu.be/orTDUKYcgA8">
+					<a data-fancybox href="https://www.youtube.com/watch?v=jrkvirglgaQ">
 						<i class="ti-control-play video"></i>
 					</a>
 				</div>
@@ -324,6 +358,127 @@
 	</div>
 </section>
 <!--====  End of Video Promo  ====-->
+
+<!--=================================
+=            Testimonial            =
+==================================-->
+<section class="section testimonial" id="testimonial">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<!-- Testimonial Slider -->
+				<div class="testimonial-slider owl-carousel owl-theme">
+					<!-- Testimonial 01 -->
+					<div class="item">
+						<div class="block shadow">
+							<!-- Speech -->
+							<p>
+								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
+								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
+								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
+								pretium ut lacinia in, elementum id enim.
+							</p>
+							<!-- Person Thumb -->
+							<div class="image">
+								<img src="images/testimonial/feature-testimonial-thumb.jpg" alt="image">
+							</div>
+							<!-- Name and Company -->
+							<cite>Abraham Linkon , Themefisher.com</cite>
+						</div>
+					</div>
+					<!-- Testimonial 01 -->
+					<div class="item">
+						<div class="block shadow">
+							<!-- Speech -->
+							<p>
+								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
+								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
+								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
+								pretium ut lacinia in, elementum id enim.
+							</p>
+							<!-- Person Thumb -->
+							<div class="image">
+								<img src="images/testimonial/feature-testimonial-thumb.jpg" alt="image">
+							</div>
+							<!-- Name and Company -->
+							<cite>Abraham Linkon , Themefisher.com</cite>
+						</div>
+					</div>
+					<!-- Testimonial 01 -->
+					<div class="item">
+						<div class="block shadow">
+							<!-- Speech -->
+							<p>
+								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
+								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
+								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
+								pretium ut lacinia in, elementum id enim.
+							</p>
+							<!-- Person Thumb -->
+							<div class="image">
+								<img src="images/testimonial/feature-testimonial-thumb.jpg" alt="image">
+							</div>
+							<!-- Name and Company -->
+							<cite>Abraham Linkon , Themefisher.com</cite>
+						</div>
+					</div>
+					<!-- Testimonial 01 -->
+					<div class="item">
+						<div class="block shadow">
+							<!-- Speech -->
+							<p>
+								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
+								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
+								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
+								pretium ut lacinia in, elementum id enim.
+							</p>
+							<!-- Person Thumb -->
+							<div class="image">
+								<img src="images/testimonial/feature-testimonial-thumb.jpg" alt="image">
+							</div>
+							<!-- Name and Company -->
+							<cite>Abraham Linkon , Themefisher.com</cite>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--====  End of Testimonial  ====-->
+
+<section class="call-to-action-app section bg-blue">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>It's time to change your mind</h2>
+				<p>Download over 2 million humans .Get <a href="https://themefisher.com/products/small-apps-free-app-landing-page-template/">Small Apps</a> free forever!
+					<br>We say you won’t look back.</p>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<a href="" class="btn btn-rounded-icon">
+							<i class="ti-apple"></i>
+							Iphone
+						</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="" class="btn btn-rounded-icon">
+							<i class="ti-android"></i>
+							Android
+						</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="" class="btn btn-rounded-icon">
+							<i class="ti-microsoft-alt"></i>
+							Windows
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
 <!--============================
 =            Footer            =
 =============================-->
@@ -333,7 +488,7 @@
       <div class="row">
         <div class="col-lg-4 col-md-12 m-md-auto align-self-center">
           <div class="block">
-            <a href="index.html"><img style="width: 50%;" src="images/logo-alt.png" alt="footer-logo"></a>
+            <a href="index.html"><img src="images/logo-alt.png" alt="footer-logo"></a>
             <!-- Social Site Icons -->
             <ul class="social-icon list-inline">
               <li class="list-inline-item">
@@ -350,30 +505,51 @@
         </div>
         <div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
           <div class="block-2">
+            <!-- heading -->
             <h6>Product</h6>
+            <!-- links -->
             <ul>
               <li><a href="team.html">Teams</a></li>
-              <li><a href="#">Investigation</a></li>
+              <li><a href="blog.html">Blogs</a></li>
+              <li><a href="FAQ.html">FAQs</a></li>
             </ul>
           </div>
         </div>
         <div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
           <div class="block-2">
-            <h6>Company</h6>
+            <!-- heading -->
+            <h6>Resources</h6>
+            <!-- links -->
             <ul>
-			  <li><a href="https://usbcali.edu.co/" target="_blank">USB Cali</a></li>
-              <li><a href="https://usbcali.edu.co/programa/ingenieria/pregrado/ingenieria-multimedia/" target="_blank">Multimedia</a></li>
-			  <li><a href="https://usbcali.edu.co/programa/ingenieria/pregrado/ingenieria-de-sistemas/" target="_blank">Software</a></li>
-			  <li><a href="https://usbcali.edu.co/programa/ingenieria/pregrado/ingenieria-agroindustrial/" target="_blank">Agroindustrial</a></li>
+              <li><a href="sign-up.html">Singup</a></li>
+              <li><a href="sign-in.html">Login</a></li>
+              <li><a href="blog.html">Blog</a></li>
             </ul>
           </div>
         </div>
         <div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
           <div class="block-2">
-            <h6>Contact</h6>
+            <!-- heading -->
+            <h6>Company</h6>
+            <!-- links -->
+            <ul>
+              <li><a href="career.html">Career</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="team.html">Investor</a></li>
+              <li><a href="privacy.html">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
+          <div class="block-2">
+            <!-- heading -->
+            <h6>Company</h6>
+            <!-- links -->
             <ul>
               <li><a href="about.html">About</a></li>
               <li><a href="contact.html">Contact</a></li>
+              <li><a href="team.html">Team</a></li>
+              <li><a href="privacy-policy.html">Privacy Policy</a></li>
             </ul>
           </div>
         </div>
@@ -381,7 +557,7 @@
     </div>
   </div>
   <div class="text-center bg-dark py-4">
-    <small class="text-secondary">Copyright &copy; <script>document.write(new Date().getFullYear())</script>. Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a> And Modify By Kelly Marin - USB Cali</small class="text-secondary">
+    <small class="text-secondary">Copyright &copy; <script>document.write(new Date().getFullYear())</script>. Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></small class="text-secondary">
   </div>
 </footer>
 

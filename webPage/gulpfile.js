@@ -8,6 +8,7 @@ const autoprefixer = require("gulp-autoprefixer");
 const bs = require("browser-sync").create();
 const rimraf = require("rimraf");
 const comments = require("gulp-header-comment");
+const nodePath = require("path");
 
 var path = {
   src: {
@@ -25,6 +26,10 @@ var path = {
     dirDev: "theme/",
   },
 };
+
+const projectRoot = nodePath.resolve(__dirname, "..");
+const plantRoot = nodePath.resolve(__dirname, "../plant");
+const themeRoot = nodePath.resolve(__dirname, path.build.dirDev);
 
 // HTML
 gulp.task("html:build", function () {
@@ -141,6 +146,10 @@ gulp.task("watch:build", function () {
   gulp.watch(path.src.js, gulp.series("js:build"));
   gulp.watch(path.src.images, gulp.series("images:build"));
   gulp.watch(path.src.plugins, gulp.series("plugins:build"));
+  gulp.watch("../plant/views/**/*.html").on("change", bs.reload);
+  gulp.watch("../plant/index.html").on("change", bs.reload);
+  gulp.watch("../plant/src/**/*.*").on("change", bs.reload);
+  gulp.watch("../plant/img/**/*.*").on("change", bs.reload);
 });
 
 // Dev Task
@@ -157,8 +166,14 @@ gulp.task(
     gulp.parallel("watch:build", function () {
       bs.init({
         server: {
-          baseDir: path.build.dirDev,
+          baseDir: plantRoot,
+          directory: true,
+          routes: {
+            "/views": nodePath.join(plantRoot, "views"),
+            "/theme": themeRoot,
+          },
         },
+        startPath: "/index.html",
       });
     })
   )
