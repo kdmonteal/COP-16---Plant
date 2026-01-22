@@ -1,0 +1,5 @@
+# macOS filesystem metadata
+.DS_Store
+
+# Local environment configuration
+api-cop16/.env

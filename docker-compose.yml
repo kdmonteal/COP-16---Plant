@@ -1,5 +1,7 @@
+version: "3.9"
+
 services:
-  web:
+  plant_frontend:
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,11 +10,18 @@ services:
     volumes:
       - ./webPage:/usr/src/app/webPage
       - ./plant:/usr/src/app/plant
-      - node_modules:/usr/src/app/webPage/node_modules
+      - plant_node_modules:/usr/src/app/webPage/node_modules
     ports:
       - "3000:3000"
       - "3001:3001"
     environment:
       CHOKIDAR_USEPOLLING: "true"
+
+  api_backend:
+    build:
+      context: ./api-cop16
+    ports:
+      - "5003:5000"
+
 volumes:
-  node_modules:
+  plant_node_modules:
