@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <title>Planta AR</title>
+  <title>AR Plant</title>
   <style>
     body {
       margin: 0;
@@ -60,7 +60,7 @@
 
   <script>
 
-    // Lista de URLs de los modelos GLB
+    // List of GLB model file names
     const models = [
         "Frijol_0.glb",
         "Frijol_1.glb",
@@ -74,7 +74,7 @@
 
     let currentModelIndex = 0;
 
-    // Función para cambiar el modelo cada 3 segundos
+    // Cycle through the models on a fixed interval
     setInterval(() => {
         // Cambia al siguiente modelo
         currentModelIndex = (currentModelIndex + 1) % models.length;
@@ -84,28 +84,28 @@
         modelViewer.src = myPath;
 
         console.log(myPath);
-    }, 6000); // Cada 3 segundos
+    }, 6000); // Switch model every 6 seconds
 </script>
 
   <div class="info-panel">
-    <h2>Información de la Planta</h2>
-    <p>Humedad: <span id="humidity">-</span>%</p>
-    <p>Probabilidad de Vivir: <span id="probability">-</span>%</p>
-    <p>Otros factores: <span id="factors">-</span></p>
+    <h2>Plant Information</h2>
+    <p>Humidity: <span id="humidity">-</span>%</p>
+    <p>Survival Probability: <span id="probability">-</span>%</p>
+    <p>Other Factors: <span id="factors">-</span></p>
   </div>
 
   <script>
-    // Simula la actualización de los datos de la planta
+    // Simulate updating plant metrics
     function updatePlantInfo() {
       document.getElementById('humidity').textContent = Math.floor(Math.random() * 100);
       document.getElementById('probability').textContent = Math.floor(Math.random() * 100);
-      document.getElementById('factors').textContent = 'Fertilización adecuada, Luz solar moderada';
+      document.getElementById('factors').textContent = 'Adequate fertilization, Moderate sunlight';
     }
 
-    // Actualiza la información de la planta cada 5 segundos
+    // Refresh the plant information every 5 seconds
     setInterval(updatePlantInfo, 5000);
 
-    // Actualiza la información de la planta al cargar la página
+    // Populate initial values when the page loads
     updatePlantInfo();
   </script>
 </body>

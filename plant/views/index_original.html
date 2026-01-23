@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../src/css/index_invernadero.css">
     <link rel="stylesheet" href="../src/css/model_viewer_style.css">
 
-    <title>Puntos de Interés en Modelo 3D Usb</title>
+    <title>Points of Interest in USB 3D Model</title>
 </head>
 <body class="bg-white">
 
@@ -113,7 +113,7 @@
         <hr>
         <div class="d-flex flex-row" style="margin-top: 2%;">
             <div class="col">
-                <h4>Predicción de Supervivencia</h4>
+                <h4>Survival Prediction</h4>
 
                 <button id="modalEstandar" type="button" class="btn btn-primary btn-round" data-bs-toggle="modal"
                     data-bs-target="#modalTab">
@@ -127,7 +127,7 @@
 
                         <div class="row">
                             <div class="col-sm d-flex justify-content-end">
-                                <label for="temperatura">Temperatura (°C):</label>
+                                <label for="temperatura">Temperature (°C):</label>
                             </div>
                             <div class="col-sm d-flex justify-content-start">
                                 <input type="number" id="temperatura" step="any" value="20" required><br>
@@ -136,7 +136,7 @@
 
                         <div class="row">
                             <div class="col-sm d-flex justify-content-end">
-                                <label for="humedad_suelo">Humedad del Suelo (%):</label>
+                                <label for="humedad_suelo">Soil Moisture (%):</label>
                             </div>
                             <div class="col-sm d-flex justify-content-start">
                                 <input type="number" id="humedad_suelo" step="any" value="60" required><br>
@@ -145,7 +145,7 @@
 
                         <div class="row">
                             <div class="col-sm d-flex justify-content-end">
-                                <label for="humedad_ambiente">Humedad Ambiente (%):</label>
+                                <label for="humedad_ambiente">Ambient Humidity (%):</label>
                             </div>
                             <div class="col-sm d-flex justify-content-start">
                                 <input type="number" id="humedad_ambiente" step="any" value="60" required><br>
@@ -154,7 +154,7 @@
 
                         <div class="row">
                             <div class="col-sm d-flex justify-content-end">
-                                <label for="luz">Luz (Lux):</label>
+                                <label for="luz">Light (Lux):</label>
                             </div>
                             <div class="col-sm d-flex justify-content-start">
                                 <input type="number" id="luz" step="any" value="4000" required><br>
@@ -163,7 +163,7 @@
 
                         <div class="row">
                             <div class="col-sm d-flex justify-content-end">
-                                <label for="ph_suelo">pH del Suelo:</label>
+                                <label for="ph_suelo">Soil pH:</label>
                             </div>
                             <div class="col-sm d-flex justify-content-start">
                                 <input type="number" id="ph_suelo" step="any" value="6" required><br>
@@ -181,7 +181,7 @@
 
                         <div class="row">
                             <div class="col-sm d-flex justify-content-end">
-                                <label for="nitrogeno">Nitrógeno (ppm):</label>
+                                <label for="nitrogeno">Nitrogen (ppm):</label>
                             </div>
                             <div class="col-sm d-flex justify-content-start">
                                 <input type="number" id="nitrogeno" step="any" value="20" required><br>
@@ -190,7 +190,7 @@
 
                         <div class="row">
                             <div class="col-sm d-flex justify-content-end">
-                                <label for="fosforo">Fósforo (ppm):</label>
+                                <label for="fosforo">Phosphorus (ppm):</label>
                             </div>
                             <div class="col-sm d-flex justify-content-start">
                                 <input type="number" id="fosforo" step="any" value="20" required><br>
@@ -199,7 +199,7 @@
 
                         <div class="row">
                             <div class="col-sm d-flex justify-content-end">
-                                <label for="potasio">Potasio (ppm):</label>
+                                <label for="potasio">Potassium (ppm):</label>
                             </div>
                             <div class="col-sm d-flex justify-content-start">
                                 <input type="number" id="potasio" step="any" value="200" required><br>
@@ -209,8 +209,8 @@
                 </div>
                 <hr>
                 <button id="predecirBtn" onclick="predict()" type="button"
-                    class="btn btn-outline-primary">Predecir</button>
-                <div id="loading">Cargando...</div>
+                    class="btn btn-outline-primary">Predict</button>
+                <div id="loading">Loading...</div>
                 <div id="result" class="result"></div>
                 <div id="error" class="error"></div>
             </div>
@@ -219,7 +219,7 @@
             <div id="contentText" class="col" style="display: none;">
                 <div id="resultVariables" class="result"></div>
                 <hr>
-                <h4>Recomendación</h4>
+                <h4>Recommendation</h4>
                 <button name="voicePlay" type="button" onclick="leerTexto()" class="btn btn-primary btn-round">
                     <i class="bi bi-volume-up" style="font-size: 20px;"></i>
                 </button>
@@ -243,80 +243,77 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modalTabLabel">Tabla de Rangos de Variables</h1>
+                    <h1 class="modal-title fs-5" id="modalTabLabel">Variable Range Table</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Característica</th>
-                                <th scope="col">Unidad</th>
-                                <th scope="col">Malos</th>
-                                <th scope="col">Estables</th>
-                                <th scope="col">Óptimos</th>
-                                <th scope="col">Nota Adicional</th>
+                                <th scope="col">Feature</th>
+                                <th scope="col">Unit</th>
+                                <th scope="col">Poor</th>
+                                <th scope="col">Stable</th>
+                                <th scope="col">Optimal</th>
+                                <th scope="col">Additional Note</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Temperatura</td>
+                                <td>Temperature</td>
                                 <td>°C</td>
                                 <td>10°C a 35°C</td>
                                 <td>15°C a 20°C</td>
                                 <td>20°C a 30°C</td>
-                                <td>Temperaturas extremas pueden afectar el crecimiento y la salud.</td>
+                                <td>Extreme temperatures can impact growth and overall health.</td>
                             </tr>
                             <tr>
-                                <td>Humedad (Suelo)</td>
+                                <td>Soil Moisture</td>
                                 <td>%</td>
                                 <td>0% a 50%</td>
                                 <td>50% a 70%</td>
                                 <td>60% a 70%</td>
-                                <td>Humedad baja puede causar estrés hídrico; alta puede promover enfermedades.</td>
+                                <td>Low moisture can cause water stress; high levels may promote disease.</td>
                             </tr>
                             <tr>
-                                <td>Humedad (Ambiente)</td>
+                                <td>Ambient Humidity</td>
                                 <td>%</td>
                                 <td>0% a 50%</td>
                                 <td>50% a 70%</td>
                                 <td>50% a 70%</td>
-                                <td>Controlar para evitar enfermedades fúngicas y estrés por sequía.</td>
+                                <td>Control to avoid fungal diseases and drought stress.</td>
                             </tr>
                             <tr>
-                                <td>Luz (Intensidad)</td>
+                                <td>Light (Intensity)</td>
                                 <td>Lux</td>
                                 <td>0 a 2000 lux</td>
                                 <td>2000 a 4000 lux</td>
                                 <td>4000 a 8000 lux</td>
-                                <td>Intensidad insuficiente puede limitar la fotosíntesis; excesiva puede causar daño.
-                                </td>
+                                <td>Insufficient intensity can limit photosynthesis; excess light may cause damage.</td>
                             </tr>
                             <tr>
-                                <td>pH del Suelo</td>
+                                <td>Soil pH</td>
                                 <td>-</td>
                                 <td>4.0 a 5.5</td>
                                 <td>5.5 a 6.0</td>
                                 <td>6.0 a 7.0</td>
-                                <td>pH fuera del rango óptimo puede afectar la disponibilidad de nutrientes.</td>
+                                <td>pH outside the optimal range affects nutrient availability.</td>
                             </tr>
                             <tr>
-                                <td>Contenido de Nutrientes</td>
+                                <td>Nutrient Content</td>
                                 <td>ppm (mg/kg)</td>
                                 <td>N: 0 a 5, P: 0 a 10, K: 0 a 50</td>
                                 <td>N: 10 a 20, P: 30 a 60, K: 150 a 250</td>
                                 <td>N: 20 a 30, P: 40 a 70, K: 200 a 300</td>
-                                <td>Deficiencias o excesos de nutrientes pueden afectar el crecimiento y desarrollo.
-                                </td>
+                                <td>Nutrient deficiencies or excesses can hinder growth and development.</td>
                             </tr>
                             <tr>
-                                <td>CO₂ (Aire)</td>
+                                <td>CO₂ (Air)</td>
                                 <td>ppm</td>
                                 <td>0 a 300 ppm</td>
                                 <td>300 a 600 ppm</td>
                                 <td>800 a 1000 ppm</td>
-                                <td>CO₂ >1000 ppm puede causar estrés y reducir el rendimiento. Asegurar ventilación
-                                    adecuada.</td>
+                                <td>CO₂ above 1000 ppm may cause stress and reduce yield. Ensure proper ventilation.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -335,7 +332,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modalResultLabel">Recomendación</h1>
+                    <h1 class="modal-title fs-5" id="modalResultLabel">Recommendation</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -374,7 +371,7 @@
 
         <script>
             function redirectToPage() {
-              // Redirigir a una URL específica
+                            // Redirect to a specific URL
               window.location.href = "./plant_detail.html";
             }
           </script>

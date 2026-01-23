@@ -1,4 +1,4 @@
-// Asocia la función predict al evento input de cada campo del formulario
+// Attach the predict function to each form input if live updates are required
 /*document.querySelectorAll('#plant-form input').forEach(input => {
     input.addEventListener('input', predict);
 });*/
@@ -33,7 +33,7 @@ async function predict() {
         fosforo: parseFloat(document.getElementById('fosforo').value),
         potasio: parseFloat(document.getElementById('potasio').value)
     };
-    console.log("Datos enviados:", JSON.stringify(data, null, 2));
+    console.log("Payload sent:", JSON.stringify(data, null, 2));
     try {
         const response = await fetch(PREDICT_ENDPOINT, {
             method: "POST",
@@ -47,16 +47,16 @@ async function predict() {
         });
 
         if (!response.ok) {
-            throw new Error('Error en la solicitud');
+            throw new Error('Request failed');
         }
 
         const result = await response.json();
         document.getElementById('loading').style.display = 'none';
 
         document.getElementById('result').innerHTML = `
-                    <h4>Resultados:</h4>
-                    <p><strong>Porcentaje de Supervivencia Predicho:</strong> ${result.prediction_result['Porcentaje de Supervivencia Predicho']}</p>
-                    <p><strong>Estado de Vida Predicho:</strong> ${result.prediction_result['Estado de Vida Predicho']}</p>
+                    <h4>Results:</h4>
+                    <p><strong>Predicted Survival Percentage:</strong> ${result.prediction_result['Predicted Survival Percentage']}</p>
+                    <p><strong>Predicted Life Status:</strong> ${result.prediction_result['Predicted Life Status']}</p>
                 `;
 
         document.getElementById('resultGPT').innerHTML = `
@@ -64,18 +64,18 @@ async function predict() {
                 `;
 
         document.getElementById('resultVariables').innerHTML = `
-            <h4>Estado de Variables:</h4>
+            <h4>Variable Statuses:</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Característica</th>
-                        <th>Estado</th>
+                        <th>Feature</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    ${Object.entries(result.prediction_result['Estado de Variables']).map(([key, value]) => `
+                    ${Object.entries(result.prediction_result['Variable Statuses']).map(([key, value]) => `
                         <tr>
-                            <td>${key.charAt(0).toUpperCase() + key.slice(1)}</td>
+                            <td>${key}</td>
                             <td>${value}</td>
                             </tr>
                     `).join('')}
@@ -85,18 +85,19 @@ async function predict() {
         document.getElementById('plantViewer2').style.display = 'block';
 
         const modelViewer2 = document.getElementById('plantViewer2');
-        const statusPlant = `${result.prediction_result['Estado de Vida Predicho']}`;
+                const statusPlant = `${result.prediction_result['Predicted Life Status']}`;
         let base = null;
 
         switch(statusPlant) {
-            case "Óptimo":
+                        case "Optimal":
                 base = "../src/" + "bean/Frijol_6";
               break;
-            case "Estable":
+                        case "Stable":
                 base = "../src/" + "bean/Frijol_5";
               break;
             default:
-            case "Malo":
+                        case "Dead":
+                        case "Poor":
                 base = "../src/" + "bean/planta_final_MUERE";
               break;
           }
@@ -111,7 +112,7 @@ async function predict() {
 
     } catch (error) {
         document.getElementById('loading').style.display = 'none';
-        document.getElementById('error').innerHTML = 'Ocurrió un error. Inténtalo de nuevo más tarde.';
+        document.getElementById('error').innerHTML = 'An error occurred. Please try again later.';
         console.error('Error:', error);
     }
 }
@@ -119,7 +120,7 @@ async function predict() {
 function leerTexto() {
     const texto = document.getElementById("resultGPT").innerText;
     const speech = new SpeechSynthesisUtterance(texto);
-    speech.lang = 'es-ES';  // Establece el idioma (en este caso, español)
+    speech.lang = 'en-US';  // Set speech language to English
     window.speechSynthesis.speak(speech);
 
     document.getElementsByName('voicePlay')[0].style.display = 'none';
@@ -128,7 +129,7 @@ function leerTexto() {
 }
 
 function detenerTexto() {
-    window.speechSynthesis.cancel();  // Detiene la lectura actual
+    window.speechSynthesis.cancel();  // Stop the current narration
 
     document.getElementsByName('voicePlay')[0].style.display = 'inline-flex';
     document.getElementsByName('voiceStop')[0].style.display = 'none';
